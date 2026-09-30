@@ -1,0 +1,11 @@
+{
+  "task_id": "commute-dot-plot",
+  "task_class": "dense-precise-data",
+  "instructions": "Using matplotlib, read commute.csv (columns: state, minutes) and draw a horizontal Cleveland dot plot of the average commute time for each of the 40 states.\nRequirements:\n- One circular dot per state, sorted so the state with the LONGEST commute is at the TOP and the shortest at the bottom.\n- Show every state name as a y tick label (all 40 must be visible).\n- Draw a vertical red dashed line at the median of the 40 values.\n- Set the x axis limits to 0..45 and label the x axis 'Average commute (minutes)'.\n- Set the title to exactly 'Average commute by state'.\n- Make the figure 8 by 11 inches.\n- Save the figure at 100 dpi.\nSave the figure as figure.png.",
+  "inputs": [
+    {
+      "name": "commute.csv",
+      "path": "inputs/commute.csv"
+    }
+  ]
+}

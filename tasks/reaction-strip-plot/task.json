@@ -1,0 +1,11 @@
+{
+  "task_id": "reaction-strip-plot",
+  "task_class": "dense-precise-data",
+  "instructions": "Using matplotlib, read trials.csv (columns: participant, condition, rt_ms). Each row is one reaction-time trial. Timed-out trials are recorded as rt_ms = 9999 and must be excluded before plotting and before computing any statistic.\nDraw a strip plot of rt_ms by condition: one column of horizontally jittered dots per condition.\nRequirements:\n- Conditions left to right in exactly this order: Baseline, Low load, Medium load, High load.\n- Jitter each dot horizontally by a small random offset (at most 0.15) from its condition's position.\n- Draw the dots with alpha 0.5.\n- Overlay each condition's mean (after excluding timeouts) as a short black horizontal bar of width 0.5 centred on its position.\n- Set the y axis limits to 0..1600 and label the y axis 'Reaction time (ms)'.\n- Give the chart a title.\nSave the figure as figure.png.",
+  "inputs": [
+    {
+      "name": "trials.csv",
+      "path": "inputs/trials.csv"
+    }
+  ]
+}

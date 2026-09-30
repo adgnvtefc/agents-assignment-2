@@ -1,0 +1,15 @@
+{
+  "task_id": "district-case-rates",
+  "task_class": "multi-source-join",
+  "instructions": "Using matplotlib, read cases.csv (columns: district, year, cases) and population.csv (columns: district, population_thousands \u2014 population in THOUSANDS of people). Compute each district's 2023 case rate per 100,000 residents and draw it as a horizontal bar chart.\nRequirements:\n- Use only 2023 cases.\n- Omit any district that has no entry in population.csv.\n- Sort the bars so the highest rate is at the top.\n- Draw a vertical black dashed line at the overall 2023 rate across the plotted districts (total cases divided by total population, per 100,000).\n- Label the x axis 'Cases per 100,000 residents (2023)'.\n- Give the chart a title.\n- Make the figure 9 by 6 inches.\nSave the figure as figure.png.",
+  "inputs": [
+    {
+      "name": "cases.csv",
+      "path": "inputs/cases.csv"
+    },
+    {
+      "name": "population.csv",
+      "path": "inputs/population.csv"
+    }
+  ]
+}

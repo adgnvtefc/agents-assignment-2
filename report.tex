@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{11-768 HW2: Evaluating a Data-Visualization Agent}
+\author{Your Name}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Part 1: Examine Seed Agent Runs}
+
+\subsection{Comparison of Ground-Truth and Validator Labels}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrrrr}
+\toprule
+Family & TP & TN & FP & FN & Support (+/$-$) & MCC \\
+\midrule
+\texttt{execution\_failure} & 4 & 65 & 33 & 8  & 12/98 & $-0.0022$ \\
+\texttt{wrong\_data}        & 0 & 73 & 0  & 25 & 25/73 & $0.0000$ \\
+\texttt{wrong\_chart}       & 3 & 27 & 0  & 68 & 71/27 & $0.1096$ \\
+\texttt{hard\_to\_read}     & 0 & 59 & 0  & 39 & 39/59 & $0.0000$ \\
+\midrule
+\multicolumn{6}{l}{Macro-MCC} & $0.0268$ \\
+\bottomrule
+\end{tabular}
+\caption{Baseline validator on the 110 seed runs. The 12 runs labelled
+\texttt{execution\_failure} are excluded from the other three families, which
+are scored over 98 runs.}
+\label{tab:baseline}
+\end{table}
+
+As Table~\ref{tab:baseline} shows, the baseline is close to chance (macro-MCC
+$0.027$), and its disagreements with the labels fall in two places. For
+\texttt{execution\_failure}, it flagged 37 runs, 33 of them wrongly. All 33 of
+those runs saved a \texttt{figure.png}. It also missed the other 8 real failures,
+none of which saved one. For the other three families, it almost never reports an
+error. It returned an empty list for 68 runs, only 3 of which are clean in the
+ground truth, and it never predicted \texttt{wrong\_data} or
+\texttt{hard\_to\_read}. These families therefore have no false positives but
+132 false negatives between them. The early return makes this worse: once the
+validator predicts \texttt{execution\_failure}, it skips all other checks. So
+the 33 spurious failures got no other predictions, although 20 of them have
+real errors in other families.
+
+\subsection{Validator Error Type 1}
+\textbf{Misjudged execution status.} The baseline asks the model ``Did the agent
+crash, exhaust its turns, or give up without producing a valid figure?'' and
+treats any answer starting with ``YES'' as a failure. On runs 004 and 022, both
+of which saved a figure, the model answered ``YES'' and then argued the
+opposite. On run 022 it wrote: ``The agent successfully completed the
+task\ldots\ the resulting \texttt{figure.png} file was created and verified to
+exist.'' The model seems to confuse the polarity of the negatively phrased
+question, and the parser trusts only the first word. The reverse also happens.
+Runs 010 and 053 saved no \texttt{figure.png} at all, yet the model answered
+``NO''. In every case the verdict contradicts a fact the file system already
+records: whether the figure exists.
+
+\subsection{Validator Error Type 2}
+\textbf{Missed specification violations.} The baseline asks one broad question
+per family, such as ``Does the figure fail to follow any part of the requested
+chart design?'', and the model almost always answers ``NO''. Many of the errors
+it misses are concrete and checkable. Run 009 asks for x tick labels rotated
+30\textdegree, but they are horizontal and overlap. Run 013 forbids
+jet/rainbow/hsv but uses rainbow. Run 126 plots $(x-4)(x-6)(x-8)+60$ instead of
+the requested $+90$, and its y axis does not start at 0. Run 039's script clips
+latitudes to $[-80, 80]$ before the Mercator transform. Run 038 draws the
+``Non-smoker'' series in the background colour. Some of these errors are clearest
+in the agent's code, and the model cannot read exact values or parameters from
+pixels. One vague question over a long trajectory gives a small model no
+concrete criteria to check, so it defaults to ``NO''.
+
+\subsection{Proposed Validator Changes}
+For Type 1, replace the model call with a deterministic check. A run is an
+\texttt{execution\_failure} if \texttt{figure.png} is missing or empty. On the
+seed set, figure presence alone matches all 12 \texttt{execution\_failure}
+labels. The other families are checked only when a figure exists. For Type 2,
+replace each broad question with focused, family-specific checks. Each check
+receives the agent's final plotting code, extracted from the trajectory, and
+the figure. For \texttt{wrong\_chart}, ask the model to compare the request
+with the code and figure on five design aspects: chart type, layout, axes,
+legend/colour bar/annotations, and style. For \texttt{wrong\_data}, also
+provide the input files. Then ask about the four failure modes in the
+assignment: wrong values, missing data, wrong selection, and wrong order. For
+\texttt{hard\_to\_read}, ask about each subtype in the assignment using the
+figure alone: clipped text, overlapping text, elements covering data, low
+contrast or invisible series, indistinguishable series, and squeezed layout.
+Every flagged problem must come with a written observation, which discourages
+both blanket ``NO'' and blanket ``YES'' answers.
+
+\section{Part 2: Improve Your Validator}
+
+\subsection{Implemented Changes}
+We rewrote \texttt{validator/solution.py} around both Part 1 proposals. \emph{Change 1 (deterministic):} \texttt{execution\_failure} is reported
+if and only if \texttt{figure.png} is missing or empty. No model call is made,
+and the other checks run only when a figure exists. \emph{Change 2
+(model-based):} each broad yes/no question is replaced by a focused check, and
+the three checks run in parallel. Each check extracts the agent's final plotting
+code from the trajectory: the last command that contains \texttt{savefig},
+taking the script's text when it was written with a heredoc. It then sends that
+code with the figure and asks the model to fill a JSON schema that the server
+enforces: a short observation, then a boolean, for every item. The \texttt{wrong\_chart} check covers five design aspects: chart type,
+layout, axes, legend/colour bar/annotations, and style. It receives the
+instruction and the code. The \texttt{wrong\_data} check covers four failure
+modes (wrong values, missing data, wrong selection, wrong order) and also
+receives the input files. The \texttt{hard\_to\_read} check covers the six
+readability subtypes and receives only the figure. A family is reported only if
+at least one item is flagged with a non-empty observation, and those
+observations become the evidence.
+
+\subsection{Seed-Set Performance vs.\ Baseline}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{2}{c}{MCC} & \multicolumn{4}{c}{Modified validator} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-7}
+Family & Baseline & Modified & TP & TN & FP & FN \\
+\midrule
+\texttt{execution\_failure} & $-0.0022$ & $1.0000$ & 12 & 98 & 0  & 0  \\
+\texttt{wrong\_data}        & $0.0000$  & $0.4222$ & 21 & 47 & 26 & 4  \\
+\texttt{wrong\_chart}       & $0.1096$  & $0.3970$ & 36 & 25 & 2  & 35 \\
+\texttt{hard\_to\_read}     & $0.0000$  & $0.3395$ & 14 & 54 & 5  & 25 \\
+\midrule
+Macro-MCC & $0.0268$ & $0.5397$ & & & & \\
+\bottomrule
+\end{tabular}
+\caption{Baseline and modified validator on the 110 seed runs.}
+\label{tab:part2}
+\end{table}
+
+As Table~\ref{tab:part2} shows, macro-MCC rose from $0.027$ to $0.540$, and
+every family improved. \texttt{execution\_failure} is now perfect. The other
+three families have opposite error profiles. \texttt{wrong\_data} over-predicts,
+with 26 false positives against 4 false negatives. \texttt{wrong\_chart} and
+\texttt{hard\_to\_read} under-predict: they miss 35 of 71 and 25 of 39 positives,
+respectively. On three runs (004, 009, 077), the model wrote an extremely long
+observation, hit the 2{,}000-token output limit, and returned truncated JSON.
+The runner's retries recovered 004 and 077, but 009 needed a manual resume. This
+failure mode still has to be handled inside the validator.
+
+\subsection{Qualitative Analysis of Targeted Error Types}
+The Type 1 error is fully fixed: runs 004 and 022 are no longer
+flagged as failures, and 010 and 053 are caught. Type 2 is partly
+fixed. The checks now catch concrete violations the baseline missed: horizontal
+tick labels where 30\textdegree{} rotation was requested (009), wrong x limits
+(013), and the $+60$ formula in run 126's code. However, they introduce a
+regression: \texttt{wrong\_data} false positives went from 0 to 26. Two causes
+dominate. \emph{False positive, run 082 (clean):} the model estimated the
+``auth'' median as about 100 from the pixels, compared it with 101.5, and flagged
+the difference. The model cannot read values precisely from pixels, and the check
+does not require that an error be grounded in the code.
+\emph{False negative, run 038:} the ``Non-smoker'' series is drawn in the
+background colour, so the model concluded the data was missing. It reported
+\texttt{wrong\_data} (a false positive) and missed \texttt{hard\_to\_read} (a
+false negative). Many other \texttt{wrong\_data} false positives are design
+violations filed under the wrong family (the forbidden jet colormap in 051 and
+130, the linear axis in 143). This suggests the validator needs a clearer
+separation between the families and an explicit ``not requested'' answer.
+
+\section{Part 3: Design New Evaluation Tasks}
+
+\subsection{Anticipated Generalization Weaknesses}
+We expect two classes of task to be hard for the current validator.
+\emph{Dense, precise data} (\texttt{dense-precise-data}) covers charts with many
+points or labels where correctness depends on exact values, such as dot plots,
+strip plots, and large scatter plots. On the seed set, the validator falsely
+flagged \texttt{wrong\_data} on 6 of the 10 scatter- or strip-type runs that
+produced a figure (112, 130, 169, 196, 200, 203), often after estimating values
+from pixels. It also flagged a busy but readable event plot (170) as
+\texttt{hard\_to\_read}. Dense inputs can exceed the validator's limit of 12{,}000
+characters per file, so part of the data is cut and cannot be checked.
+\emph{Multi-source joins} (\texttt{multi-source-join}) covers tasks that must
+combine two input files. None of the 110 seed runs has more than one input file,
+so these tasks are out of distribution. The validator shows each file
+separately, so the model must work out the join itself: which key links the
+files, what happens to unmatched rows, and how quantities such as rates are
+derived across files. Part 2 showed that \texttt{wrong\_data} is weakest exactly
+when it has to reason about computations rather than read the figure.
+
+\subsection{Task Design}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{p{2.9cm}p{4.3cm}p{6.8cm}}
+\toprule
+Task & Chart and inputs & Traps and checkable facts \\
+\midrule
+\multicolumn{3}{l}{\emph{Class 1: \texttt{dense-precise-data}}} \\
+\texttt{commute-dot-plot} & Dot plot of 40 states; \texttt{commute.csv} &
+  40 crowded tick labels; exact descending order (North Dakota 37.3 at the top,
+  Iowa 16.0 at the bottom); median line at 25.75 \\
+\texttt{reaction-strip-plot} & Jittered strip plot of 300 trials in 4 conditions; \texttt{trials.csv} &
+  Timeouts coded 9999 must be removed first; mean bars at 432.1 / 511.9 / 587.8 / 793.3 ms;
+  fixed condition order \\
+\texttt{station-scatter} & 500-point scatter, coloured by zone; \texttt{stations.csv} (12.5 KB) &
+  Fixed zone colours; top 5 stations by elevation labelled (ST248, ST454, ST325,
+  ST230, ST011); least-squares line (slope $-5.67$\,\textdegree C/km) \\
+\midrule
+\multicolumn{3}{l}{\emph{Class 2: \texttt{multi-source-join}}} \\
+\texttt{regional-revenue} & Bars of 2024 revenue per region; \texttt{sales.csv} + \texttt{stores.csv} &
+  Exclude 2023-12; 2 stores with no region go in an ``Unassigned'' bar; sorted totals
+  North 8371.7, East 7645.3, South 3585.3, West 2584.0, Unassigned 2488.3 \\
+\texttt{district-case-rates} & Horizontal bars of 2023 cases per 100k; \texttt{cases.csv} + \texttt{population.csv} &
+  Population is in thousands; Linden has no population and must be omitted;
+  overall-rate line at 196.3; Glenside (380.4) at the top \\
+\bottomrule
+\end{tabular}
+\caption{The five authored tasks.}
+\label{tab:tasks}
+\end{table}
+
+All data is synthetic. It is generated by \texttt{scripts/make\_tasks.py} with a
+fixed seed (7752), which also prints the answer key in Table~\ref{tab:tasks}.
+The script rejects any seed that produces ties, so every sort has exactly one
+correct answer. Every task contains at least one trap an agent can plausibly get
+wrong, so the runs yield both positive and negative labels. Every answer can be
+checked by a human, for example through sort order, excluded rows, or a named
+value. Class 1 tests whether the validator avoids calling busy but correct
+charts hard to read, and avoids flagging precise values it cannot verify by
+eye. The input for \texttt{station-scatter} also exceeds the validator's
+per-file limit. Class 2 tests whether \texttt{wrong\_data} can follow a join,
+including filters, unmatched keys, and a unit conversion.
+
+\subsection{Agent Runs and Labeling}
+Each task was run once with each fixed agent (Qwen2.5-Coder-3B,
+Ministral-3-14B, GLM-4.7-Flash) using \texttt{workflow generate}, giving 15
+runs. Each agent was limited to 20 steps, 120\,s per shell command, and 15
+minutes in total. We labelled every run by hand against the generator's answer
+key. We first checked whether a figure was produced, then the plotted values,
+selection, and order (\texttt{wrong\_data}), then each explicit requirement
+(\texttt{wrong\_chart}), and finally readability (\texttt{hard\_to\_read}).
+% TODO: run outcomes and ambiguous labelling decisions, once all 15 runs are done.
+
+\subsection{Validator Performance on New Tasks}
+Report all four per-family MCC scores and macro-MCC on the new agent runs and qualitatively
+analyze important successes, failures, and uncertain labels.
+
+\subsection{Harbor Packaging}
+State that every authored task scores 1.0 against \texttt{-a oracle}; you may
+also report the recommended \texttt{-a nop} runs. Describe both plausible-but-wrong
+mutant solutions and report each reward. For the mutant scoring 0, explain what
+it gets wrong and name the assertion that rejects it. For the mutant scoring
+1.0, explain what it gets wrong and why the verifier accepts it. Then, for each
+of the four error families, say whether a deterministic Harbor verifier for your
+task could decide it, and why or why not. Finally: your validator is graded on
+private runs for tasks you never authored. Explain why a per-task verifier
+cannot serve as that grading mechanism.
+
+\section{Part 4: Iterate on Your Design}
+
+\subsection{Additional Improvement Motivated by Part 3}
+Describe at least one change to the validator motivated by the Part 3 results.
+Identify the observed failure that motivated it and explain why you expected
+the change to help.
+
+\subsection{Final Evaluation on Seed and New Tasks}
+Evaluate the final validator on both the seed runs and self-authored runs.
+Report all four per-family MCC scores and macro-MCC before and after the change on each subset,
+including any regressions.
+
+\subsection{Qualitative Analysis of Self-Authored Tasks}
+Discuss whether the change improved performance on your self-authored tasks,
+with reference to specific runs.
+
+\subsection{Further Changes}
+Report any additional validator changes or tasks beyond the required ones.
+For each, explain its motivation and how successful you judged it to be,
+qualitatively and, for quantitative comparisons, using all four per-family MCC
+scores and macro-MCC.
+
+\end{document}

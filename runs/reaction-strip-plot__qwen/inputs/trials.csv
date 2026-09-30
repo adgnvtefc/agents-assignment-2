@@ -1,0 +1,301 @@
+participant,condition,rt_ms
+P40,Medium load,792
+P49,Low load,520
+P36,Medium load,522
+P64,Medium load,9999
+P32,Low load,745
+P53,Low load,383
+P27,Medium load,530
+P74,Baseline,522
+P51,High load,1002
+P18,High load,734
+P42,High load,793
+P73,Low load,627
+P75,High load,567
+P59,Baseline,351
+P48,Low load,532
+P04,Low load,483
+P12,Baseline,422
+P18,Medium load,850
+P71,Medium load,682
+P30,Baseline,348
+P28,Baseline,528
+P36,Low load,514
+P27,High load,695
+P13,Baseline,521
+P31,Low load,482
+P19,Baseline,414
+P73,High load,709
+P16,Low load,407
+P69,High load,851
+P35,Medium load,526
+P65,Low load,518
+P24,High load,850
+P05,High load,983
+P60,Baseline,579
+P52,Baseline,397
+P14,Low load,328
+P21,Low load,498
+P15,Medium load,637
+P06,Low load,560
+P68,Medium load,612
+P72,Medium load,692
+P04,High load,817
+P42,Medium load,721
+P05,Baseline,456
+P71,Baseline,369
+P73,Medium load,216
+P25,High load,517
+P12,Medium load,731
+P17,Baseline,384
+P59,Medium load,491
+P01,Baseline,434
+P60,High load,770
+P61,High load,9999
+P26,Medium load,512
+P64,High load,917
+P45,Low load,180
+P63,Baseline,304
+P31,Medium load,624
+P65,Medium load,405
+P44,Medium load,743
+P09,Medium load,580
+P01,Medium load,716
+P28,Low load,555
+P14,Medium load,458
+P38,Low load,587
+P22,High load,1044
+P40,Baseline,9999
+P21,Medium load,653
+P11,Low load,394
+P19,High load,1110
+P58,High load,637
+P18,Baseline,220
+P37,Low load,569
+P57,Low load,650
+P43,Baseline,372
+P34,Low load,758
+P68,High load,770
+P06,Baseline,302
+P15,Low load,638
+P39,Baseline,353
+P25,Medium load,382
+P68,Baseline,361
+P32,High load,975
+P33,Low load,9999
+P35,Baseline,446
+P32,Medium load,599
+P66,High load,949
+P20,High load,924
+P48,Medium load,684
+P55,High load,9999
+P29,High load,930
+P20,Baseline,9999
+P15,Baseline,274
+P17,Low load,630
+P72,High load,570
+P19,Medium load,698
+P45,Baseline,413
+P56,High load,656
+P14,High load,856
+P46,Low load,488
+P35,High load,729
+P42,Baseline,251
+P05,Low load,623
+P59,High load,756
+P64,Low load,509
+P38,Medium load,606
+P37,High load,473
+P43,Low load,345
+P25,Low load,675
+P09,Baseline,476
+P03,High load,587
+P33,Medium load,640
+P58,Low load,550
+P32,Baseline,542
+P22,Medium load,637
+P56,Baseline,343
+P29,Baseline,396
+P12,High load,724
+P20,Medium load,9999
+P49,Baseline,421
+P15,High load,664
+P10,Medium load,587
+P62,Medium load,575
+P34,Baseline,370
+P19,Low load,560
+P72,Low load,375
+P36,Baseline,593
+P55,Medium load,525
+P64,Baseline,387
+P74,Medium load,9999
+P01,High load,856
+P67,Baseline,412
+P05,Medium load,9999
+P39,Medium load,671
+P23,High load,735
+P34,High load,1158
+P48,Baseline,504
+P70,Medium load,748
+P57,Medium load,571
+P41,Baseline,581
+P22,Baseline,395
+P27,Low load,597
+P70,Baseline,408
+P54,Baseline,523
+P63,Low load,658
+P25,Baseline,554
+P08,High load,9999
+P60,Low load,467
+P53,Medium load,520
+P42,Low load,9999
+P74,High load,620
+P68,Low load,386
+P06,High load,9999
+P08,Medium load,517
+P50,High load,734
+P57,Baseline,418
+P62,Baseline,9999
+P23,Medium load,865
+P24,Medium load,289
+P10,Low load,499
+P28,Medium load,421
+P40,Low load,375
+P47,High load,860
+P26,High load,520
+P44,Low load,206
+P52,Medium load,563
+P71,Low load,463
+P70,High load,654
+P36,High load,683
+P55,Baseline,469
+P43,High load,484
+P30,Medium load,662
+P45,Medium load,532
+P43,Medium load,474
+P24,Low load,9999
+P63,Medium load,823
+P56,Low load,597
+P23,Low load,614
+P46,High load,1053
+P08,Low load,9999
+P37,Medium load,812
+P61,Baseline,489
+P20,Low load,380
+P66,Low load,597
+P75,Medium load,717
+P74,Low load,555
+P03,Medium load,416
+P45,High load,835
+P62,High load,732
+P07,Low load,547
+P50,Low load,609
+P09,High load,533
+P10,High load,662
+P14,Baseline,420
+P22,Low load,683
+P16,High load,774
+P46,Baseline,430
+P58,Medium load,596
+P29,Low load,612
+P37,Baseline,494
+P44,High load,949
+P21,Baseline,278
+P49,High load,829
+P61,Medium load,758
+P01,Low load,617
+P51,Medium load,410
+P69,Medium load,674
+P53,High load,755
+P71,High load,513
+P75,Low load,561
+P39,High load,645
+P03,Baseline,540
+P49,Medium load,574
+P53,Baseline,303
+P07,Baseline,521
+P56,Medium load,295
+P54,Low load,340
+P41,High load,846
+P03,Low load,291
+P39,Low load,452
+P66,Baseline,341
+P34,Medium load,737
+P02,Medium load,677
+P48,High load,1061
+P11,Medium load,394
+P47,Baseline,391
+P41,Medium load,662
+P75,Baseline,282
+P18,Low load,506
+P50,Medium load,686
+P33,High load,852
+P13,Low load,508
+P69,Low load,387
+P21,High load,965
+P11,Baseline,510
+P13,Medium load,708
+P33,Baseline,362
+P62,Low load,509
+P17,Medium load,424
+P09,Low load,445
+P58,Baseline,539
+P16,Medium load,9999
+P06,Medium load,621
+P26,Low load,496
+P51,Low load,515
+P24,Baseline,339
+P52,Low load,326
+P07,High load,715
+P46,Medium load,607
+P10,Baseline,412
+P63,High load,1096
+P30,Low load,556
+P04,Medium load,394
+P38,High load,1044
+P61,Low load,406
+P65,High load,692
+P02,High load,774
+P26,Baseline,536
+P47,Medium load,447
+P65,Baseline,575
+P16,Baseline,563
+P35,Low load,444
+P27,Baseline,728
+P02,Low load,588
+P44,Baseline,409
+P04,Baseline,488
+P50,Baseline,288
+P67,High load,829
+P31,Baseline,542
+P47,Low load,676
+P41,Low load,664
+P54,High load,688
+P67,Medium load,488
+P40,High load,525
+P60,Medium load,468
+P02,Baseline,427
+P23,Baseline,314
+P08,Baseline,555
+P67,Low load,415
+P12,Low load,595
+P17,High load,902
+P66,Medium load,819
+P69,Baseline,349
+P51,Baseline,398
+P07,Medium load,617
+P28,High load,9999
+P30,High load,856
+P52,High load,9999
+P29,Medium load,473
+P57,High load,1052
+P13,High load,734
+P72,Baseline,498
+P55,Low load,734
+P70,Low load,353
+P59,Low load,436
+P54,Medium load,387
+P31,High load,832
+P73,Baseline,524
+P11,High load,1130
+P38,Baseline,456

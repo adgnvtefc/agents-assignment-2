@@ -1,0 +1,15 @@
+{
+  "task_id": "regional-revenue",
+  "task_class": "multi-source-join",
+  "instructions": "Using matplotlib, read sales.csv (columns: store_id, month, revenue_k \u2014 monthly revenue in thousands of dollars) and stores.csv (columns: store_id, region). Join them on store_id and draw a vertical bar chart of total revenue in calendar year 2024 for each region.\nRequirements:\n- Use only months 2024-01 through 2024-12; sales.csv also contains 2023-12, which must be excluded.\n- Stores that appear in sales.csv but not in stores.csv must be included in a separate bar labelled 'Unassigned'.\n- Sort the bars by total revenue in descending order from left to right.\n- Label the y axis 'Revenue in 2024 (thousand $)' and the x axis 'Region'.\n- Set the title to exactly 'Revenue by region, 2024'.\nSave the figure as figure.png.",
+  "inputs": [
+    {
+      "name": "sales.csv",
+      "path": "inputs/sales.csv"
+    },
+    {
+      "name": "stores.csv",
+      "path": "inputs/stores.csv"
+    }
+  ]
+}

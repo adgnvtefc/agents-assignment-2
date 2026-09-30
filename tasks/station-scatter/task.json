@@ -1,0 +1,11 @@
+{
+  "task_id": "station-scatter",
+  "task_class": "dense-precise-data",
+  "instructions": "Using matplotlib, read stations.csv (columns: station_id, elevation_m, mean_temp_c, climate_zone) and draw a scatter plot of mean temperature (y) against elevation (x) for all 500 weather stations.\nRequirements:\n- Colour points by climate_zone with exactly these colours: Arid = 'orange', Temperate = 'green', Polar = 'blue', and add a legend for the three zones.\n- Annotate the 5 stations with the highest elevation with their station_id, placed next to their points.\n- Fit one least-squares straight line to ALL 500 stations (ignoring zone) and draw it as a black dashed line across the full x range; include it in the legend as 'Least-squares fit'.\n- Label the x axis 'Elevation (m)' and the y axis 'Mean temperature (\u00b0C)'.\n- Give the chart a title.\n- Make the figure 10 by 7 inches.\nSave the figure as figure.png.",
+  "inputs": [
+    {
+      "name": "stations.csv",
+      "path": "inputs/stations.csv"
+    }
+  ]
+}

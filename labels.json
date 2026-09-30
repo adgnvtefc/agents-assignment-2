@@ -1,0 +1,114 @@
+{
+  "labels": [
+    {
+      "run_id": "commute-dot-plot__glm",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "The request puts the longest commute at the top, but the dots are sorted descending onto y positions 0..39, so the longest commute (North Dakota, 37.3) is at the bottom and the shortest (Iowa, 16.0) at the top."
+        }
+      ]
+    },
+    {
+      "run_id": "commute-dot-plot__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "Each dot is plotted at its original CSV row index while the y tick labels follow the sorted order, so the state names label other states' values (e.g. 'Iowa' labels a dot at about 24 minutes, but Iowa's value is 16.0); the requested descending order is not shown."
+        }
+      ]
+    },
+    {
+      "run_id": "commute-dot-plot__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "The agent hit the 20-step limit after repeated shell syntax errors and barh() errors; no figure.png was saved."
+        }
+      ]
+    },
+    {
+      "run_id": "district-case-rates__glm",
+      "errors": []
+    },
+    {
+      "run_id": "district-case-rates__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "The request puts the highest rate at the top, but the bars are sorted descending into barh, so Glenside (380.4, the highest) is at the bottom and Dunmore at the top."
+        }
+      ]
+    },
+    {
+      "run_id": "district-case-rates__qwen",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "Rates are computed as cases*100000/population_thousands, ignoring that population is in thousands, so every rate is 1000x too large (Glenside about 380,000 instead of 380.4); the overall line is the mean of the district rates (about 215,000) instead of total cases over total population (196.3 per 100k); and the highest rate is at the bottom instead of the top."
+        }
+      ]
+    },
+    {
+      "run_id": "reaction-strip-plot__glm",
+      "errors": []
+    },
+    {
+      "run_id": "reaction-strip-plot__ministral",
+      "errors": []
+    },
+    {
+      "run_id": "reaction-strip-plot__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "The agent submitted after 7 steps without ever saving figure.png."
+        }
+      ]
+    },
+    {
+      "run_id": "regional-revenue__glm",
+      "errors": []
+    },
+    {
+      "run_id": "regional-revenue__ministral",
+      "errors": []
+    },
+    {
+      "run_id": "regional-revenue__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "The agent hit the 20-step limit without saving figure.png."
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__glm",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "The top-5 elevation annotations overlap: 'ST454' and 'ST325' are printed on top of each other at the right edge, as are 'ST011' and 'ST230', so those station IDs cannot be read."
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__ministral",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "The top-5 elevation annotations overlap: 'ST454' and 'ST325' are overprinted into one unreadable label, as are 'ST011' and 'ST230'."
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "The agent submitted after 7 steps without ever saving figure.png."
+        }
+      ]
+    }
+  ]
+}

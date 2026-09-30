@@ -1,0 +1,122 @@
+{
+  "predictions": [
+    {
+      "run_id": "commute-dot-plot__glm",
+      "errors": []
+    },
+    {
+      "run_id": "commute-dot-plot__ministral",
+      "errors": []
+    },
+    {
+      "run_id": "commute-dot-plot__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "district-case-rates__glm",
+      "errors": []
+    },
+    {
+      "run_id": "district-case-rates__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong_values: The code calculates the case rate as (cases / population_thousands) * 100, but the request asks for the rate per 100,000 residents. The correct formula should be (cases / population_thousands) * 100,000. The code uses 100 instead of 100,000, which is a scaling error."
+        }
+      ]
+    },
+    {
+      "run_id": "district-case-rates__qwen",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong_values: The chart shows case rates per 100,000 residents, but the values are incorrect. For example, the rate for Ashford is shown as approximately 80,000, but the correct calculation is (154 cases / 104.7 thousand people) * 100,000 = 147.1. The chart's values are roughly 100 times too high."
+        }
+      ]
+    },
+    {
+      "run_id": "reaction-strip-plot__glm",
+      "errors": []
+    },
+    {
+      "run_id": "reaction-strip-plot__ministral",
+      "errors": []
+    },
+    {
+      "run_id": "reaction-strip-plot__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "regional-revenue__glm",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong_values: The bar chart shows revenue values in the thousands, but the y-axis label indicates 'Revenue in 2024 (thousand $)'. The values on the y-axis are in the thousands, but the chart shows values like 8000, which would be 8 million dollars, which is incorrect. The actual total revenue for the North region is 11,150.2 thousand dollars, which is 11.15 million dollars. The chart shows a value of 8000, which is incorrect."
+        }
+      ]
+    },
+    {
+      "run_id": "regional-revenue__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong_values: The bar chart shows the total revenue for each region in 2024, but the values are incorrect. The sum of revenues for the North region is 10,282.4 (140.3 + 91.3 + 58.1 + 155.3 + 100.4 + 136.6 + 121.2 + 127.2 + 64.3 + 151.2 + 118.9 + 41.1 + 56.1 + 89.9 + 87.7 + 124.8 + 91.7 + 106.3 + 126.0 + 54.1 + 93.4 + 101.3 + 154.5 + 73.7 + 138.0 + 77.9 + 107.7 + 68.6 + 76.5 + 95.5 + 93.2 + 122.8 + 118.1 + 64.6 + 85.9 + 115.0 + 72.9 + 90.5 + 101.7 + 155.3 + 98.1 + 123.6 + 133.6 + 145.1 + 104.6 + 45.7 + 94.3 + 54.8 + 105.5 + 96.3 + 150.5 + 75.3 + 113.9 + 100.3 + 64.7 + 147.7 + 117.4 + 41.1 + 118.5 + 129.8), which is approximately 10,282.4. The chart shows a value of approximately 8,400, which is incorrect. The East region's sum is 10,282.4, but the chart shows a value of approximately 7,600. The South region's sum is 10,282.4, but the chart shows a value of approximately 3,600. The West region's sum is 10,282.4, but the chart shows a value of approximately 2,600. The Unassigned region's sum is 10,282.4, but the chart shows a value of approximately 2,500. The values are incorrect."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "legend_colorbar_annotations: There is no legend or color bar in the figure. The figure does not include any value labels on the bars."
+        }
+      ]
+    },
+    {
+      "run_id": "regional-revenue__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__glm",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "clipped_text: The text 'ST248' and 'ST249' at the right edge of the plot is partially cut off by the image boundary."
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong_values: The plot shows a title, but it is not the requested title. The requested title is 'Mean Temperature vs Elevation for Weather Stations', but the plot has a different title."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "clipped_text: The text 'ST335' and 'ST248' are partially cut off at the right edge of the plot area, with the last digit of each label missing."
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    }
+  ]
+}
