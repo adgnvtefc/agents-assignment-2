@@ -1,23 +1,36 @@
 #!/bin/bash
-# Reference solution.  The oracle agent (`-a oracle`) runs this in /app; it is
-# what proves your task is solvable and that your verifier can say yes.
+# Reference solution for regional-revenue -- what `-a oracle` runs.
+# Writes plot.py to disk and then runs it, because the task requires a re-runnable
+# script to be left behind and the verifier re-executes it.
 set -euo pipefail
 
-# --- HARBOR-TEMPLATE-SENTINEL ---------------------------------------------
-# TODO: replace this whole block with the real solution, then delete the
-# `exit 1` below.  It must produce, unattended, exactly the outputs
-# instruction.md promises.  Until then this task scores 0, which is on purpose:
-# a template that scored 1.0 unimplemented would tell you that you were done.
-# ---------------------------------------------------------------------------
-cat >&2 <<'MSG'
-solve.sh is still the unedited template, so this task scores 0 by design.
+cat > /app/plot.py <<'PY'
+"""Total 2024 revenue per region, from sales.csv joined to stores.csv."""
+import json
 
-Write the reference solution here: it must leave behind, in /app, every file
-instruction.md asks the agent for -- typically the plotting script, the PNG it
-saves, and any sidecar JSON.  Write the script with a heredoc and then run it,
-so the delivered figure is genuinely the one the script renders.
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import pandas as pd
 
-Then run:  harbor run -p <this-task-dir> -a oracle --job-name <name>
-and expect reward 1.0.
-MSG
-exit 1
+sales = pd.read_csv("sales.csv")
+stores = pd.read_csv("stores.csv")
+sales = sales[sales["month"].str.startswith("2024-")]             # drop 2023-12
+joined = sales.merge(stores, on="store_id", how="left")
+joined["region"] = joined["region"].fillna("Unassigned")          # stores with no region
+totals = joined.groupby("region")["revenue_k"].sum().sort_values(ascending=False)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.bar(totals.index, totals.values, color="#4C78A8")
+ax.set_xlabel("Region")
+ax.set_ylabel("Revenue in 2024 (thousand $)")
+ax.set_title("Revenue by region, 2024")
+fig.tight_layout()
+fig.savefig("figure.png", dpi=100)
+
+with open("plotted_values.json", "w") as handle:
+    json.dump({"regions": totals.index.tolist(), "revenue_k": [float(v) for v in totals.values]},
+              handle, indent=2)
+PY
+
+cd /app && python plot.py

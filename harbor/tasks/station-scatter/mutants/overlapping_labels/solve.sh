@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reference solution for station-scatter -- what `-a oracle` runs.
+# MUTANT overlapping_labels: Correct data, colours, fit line and sidecar, but every top-5 label uses the same offset, so labels of nearby stations print on top of each other (what the GLM and Ministral agents did).
 # Writes plot.py to disk and then runs it, because the task requires a re-runnable
 # script to be left behind and the verifier re-executes it.
 set -euo pipefail
@@ -29,13 +29,9 @@ xs = np.array([stations["elevation_m"].min(), stations["elevation_m"].max()])
 ax.plot(xs, slope * xs + intercept, "k--", label="Least-squares fit")
 
 top5 = stations.nlargest(5, "elevation_m")
-# Put the labels in a fixed column in the empty top-right corner, one row per
-# rank, with a leader line back to each point, so that stations at almost the
-# same position do not print their IDs on top of each other.
-for rank, (_, row) in enumerate(top5.iterrows()):
+for _, row in top5.iterrows():
     ax.annotate(row["station_id"], (row["elevation_m"], row["mean_temp_c"]),
-                xytext=(0.72, 0.95 - 0.055 * rank), textcoords="axes fraction", fontsize=9,
-                arrowprops=dict(arrowstyle="-", color="grey", lw=0.8))
+                xytext=(5, 5), textcoords="offset points", fontsize=11)
 
 ax.set_xlabel("Elevation (m)")
 ax.set_ylabel("Mean temperature (°C)")

@@ -1,23 +1,38 @@
 #!/bin/bash
-# Reference solution.  The oracle agent (`-a oracle`) runs this in /app; it is
-# what proves your task is solvable and that your verifier can say yes.
+# Reference solution for commute-dot-plot -- what `-a oracle` runs.
+# Writes plot.py to disk and then runs it, because the task requires a re-runnable
+# script to be left behind and the verifier re-executes it.
 set -euo pipefail
 
-# --- HARBOR-TEMPLATE-SENTINEL ---------------------------------------------
-# TODO: replace this whole block with the real solution, then delete the
-# `exit 1` below.  It must produce, unattended, exactly the outputs
-# instruction.md promises.  Until then this task scores 0, which is on purpose:
-# a template that scored 1.0 unimplemented would tell you that you were done.
-# ---------------------------------------------------------------------------
-cat >&2 <<'MSG'
-solve.sh is still the unedited template, so this task scores 0 by design.
+cat > /app/plot.py <<'PY'
+"""Cleveland dot plot of average commute time by state, longest at the top."""
+import json
 
-Write the reference solution here: it must leave behind, in /app, every file
-instruction.md asks the agent for -- typically the plotting script, the PNG it
-saves, and any sidecar JSON.  Write the script with a heredoc and then run it,
-so the delivered figure is genuinely the one the script renders.
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import pandas as pd
 
-Then run:  harbor run -p <this-task-dir> -a oracle --job-name <name>
-and expect reward 1.0.
-MSG
-exit 1
+data = pd.read_csv("commute.csv").sort_values("minutes", ascending=False).reset_index(drop=True)
+median = float(data["minutes"].median())
+
+fig, ax = plt.subplots(figsize=(8, 11))
+positions = range(len(data))
+ax.scatter(data["minutes"], positions, marker="o", color="#1f77b4", zorder=3)
+ax.set_yticks(list(positions))
+ax.set_yticklabels(data["state"])
+ax.invert_yaxis()                               # first row (longest commute) at the top
+ax.axvline(median, color="red", linestyle="--", label=f"Median ({median:g} min)")
+ax.set_xlim(0, 45)
+ax.set_xlabel("Average commute (minutes)")
+ax.set_title("Average commute by state")
+ax.legend(loc="lower right")
+fig.tight_layout()
+fig.savefig("figure.png", dpi=100)
+
+with open("plotted_values.json", "w") as handle:
+    json.dump({"states": data["state"].tolist(), "minutes": data["minutes"].tolist(),
+               "median": median}, handle, indent=2)
+PY
+
+cd /app && python plot.py

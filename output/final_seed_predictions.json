@@ -1,0 +1,1056 @@
+{
+  "predictions": [
+    {
+      "run_id": "001",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "004",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The x values for the first three subplots are generated using np.arange(0.02, 25.0, 0.02), which creates a range from 0.02 to 24.98 with a step of 0.02. However, the request specifies a range from 0.02 to 25.0 with a step of 0.02, which would include 25.0. The generated range does not include 25.0. | chart: The x-axis of the first subplot shows values up to 25.0, but the last data point is at 24.98, which is consistent with the code's range. The chart does not show any data point at 25.0, confirming the range is incorrect."
+        }
+      ]
+    },
+    {
+      "run_id": "008",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code filters out rows where source == 'orange', which removes all flows originating from 'orange'. | chart: The chart shows flows from 'orange' as a source, indicating that the filter is not applied and the data is not correctly filtered.; missing data: code: The code filters out rows where source == 'orange', which removes all flows originating from 'orange'. | chart: The chart shows flows from 'orange' as a source, indicating that the filter is not applied and the data is not correctly filtered.; wrong selection: code: The code filters out rows where source == 'orange', which removes all flows originating from 'orange'. | chart: The chart shows flows from 'orange' as a source, indicating that the filter is not applied and the data is not correctly filtered.; wrong order: code: The code sorts the pairs by ['source', 'target'] before plotting, but the chart shows the source nodes in a different order (apple, banana, blueberry, lime), which does not match the alphabetical order of the source labels. | chart: The source nodes are ordered as apple, banana, blueberry, lime from top to bottom, which is not the alphabetical order of the source labels."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: 'apple (278)' has contrast 1.1:1 against its background; 'banana (169)' has contrast 1.1:1 against its background; 'blueberry (213)' has contrast 1.1:1 against its background; 'lime (260)' has contrast 1.1:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "009",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses a fixed levels array with values [-5, 5, -3, 3, -1, 1] repeated, which is not based on the actual data or the request to 'adjust the height of these vertical lines to differentiate closely spaced events'. The request implies a dynamic adjustment based on event proximity, but the code's | chart: The chart shows vertical lines at different heights (e.g., some at y=5, some at y=-5, some at y=3, etc.), but the pattern is a fixed repeating sequence, not a dynamic adjustment based on the actual spacing of the release dates. The heights do not appear to be adjusted to differentiate closely spaced"
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The title is 'Matplotlib Release Dates', which matches exactly. The x-axis has tick labels that are rotated by 30 degrees. The y-axis has no ticks or tick labels, and the top, right, and left spines are hidden. The x-axis is a timeline with dates, but the labels are not the requested release dates;; tick rotation: the request asks for x tick labels rotated by 30 degrees; they are at [0.0]"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'Jul 2014' and 'Aug 2014' overlap; 'Jul 2014' and 'Sep 2014' overlap; 'Jul 2014' and 'Oct 2014' overlap; 'Aug 2014' and 'Sep 2014' overlap (+167 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "010",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "013",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses the rainbow colormap, which is explicitly forbidden by the request. The request requires the reversed plasma colormap, but the code uses plt.colormaps[“rainbow”](...). | chart: The chart shows a rainbow-colored surface, confirming the use of the rainbow colormap instead of the required reversed plasma colormap."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: x-axis ranges from -5 to 25, y-axis from 2 to 10, z-axis from 0 to 0.45; x-axis label 'x', y-axis label 'y', z-axis label 'probability'; title 'Gaussian densities stacked along the y axis'; axis limits not set to 0-20 for x, y from 2-10, z not specified; ticks and labels present; gridlines visible;; style: Colormap appears to be a rainbow-like gradient (plasma-like but not reversed), not explicitly reversed plasma; polygons are filled with color; no line styles or markers specified; no use of forbidden colormaps like jet, rainbow, or hsv; however, the colormap is not reversed plasma as requested; colormap: the request forbids jet/rainbow/hsv, but the figure uses ['rainbow']; the request asks for the reversed plasma colormap; the figure uses ['rainbow']; the request asks for the reversed plasma colormap; the figure uses ['rainbow']"
+        }
+      ]
+    },
+    {
+      "run_id": "016",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code does not filter out versions with share below 0.5%, instead it uses the raw 'Data' values for the outer ring without any filtering. | chart: The chart shows all versions, including those with very small shares (e.g., 'Chrome 72.0', 'Chrome 71.0', etc.), which are below 0.5% and should have been dropped.; missing data: code: The code does not drop versions with share below 0.5%, so all versions are included in the outer ring. | chart: The chart includes many versions with very small shares, such as 'Chrome 72.0', 'Chrome 71.0', etc., which are not filtered out as required.; wrong selection: code: The code uses the raw 'Data' column for the outer ring without filtering, and it uses the 'Browser' column to assign colors, which is correct. | chart: The chart shows all versions, including those with very small shares, which are not filtered out as required.; wrong order: code: The code uses the order of the 'Browser' groups as they appear in the data, which is not sorted by share, and the inner ring labels are based on the sum of each browser's data, which may not match the requested order. | chart: The chart shows the browsers in an order that does not correspond to the order of their market share, and the inner ring labels are not in the requested order."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "legend: the request asks for a legend, but the figure has none"
+        }
+      ]
+    },
+    {
+      "run_id": "021",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "axis label: the request asks for a x axis label, but no panel has one"
+        }
+      ]
+    },
+    {
+      "run_id": "022",
+      "errors": []
+    },
+    {
+      "run_id": "023",
+      "errors": []
+    },
+    {
+      "run_id": "025",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses a pie chart with country-level data and labels, but the request asks for a sunburst chart structured by 'Major Area', 'Regions', and 'Country' hierarchy. The pie chart does not reflect the hierarchical structure required by the sunburst chart. | chart: The chart is a pie chart with country names as labels and percentages, not a sunburst chart with hierarchical segments. The center is hollow, but the structure is not hierarchical by Major Area, Regions, and Country. The data is not aggregated by the requested hierarchy.; missing data: code: The code does not use the 'Major Area', 'Regions', and 'Country' columns to create a hierarchical structure. Instead, it uses only the 'Country' column for labels and 'Overall score' for values, ignoring the hierarchy. | chart: The chart shows only country-level data with no visible hierarchy. The requested hierarchy of Major Area, Regions, and Country is not present in the chart.; wrong selection: code: The code selects 'Country' as the label and 'Overall score' as the value, but the request specifies that the hierarchy should be based on 'Major Area', 'Regions', and 'Country'. The code does not use the correct columns for the hierarchy. | chart: The chart uses 'Country' as the label and 'Overall score' as the value, but the hierarchy is not structured as requested. The chart does not show the correct selection of columns for the hierarchy.; wrong order: code: The code does not specify any order for the hierarchy, but the request implies a specific order: Major Area, then Regions, then Country. The code does not enforce this order. | chart: The chart does not show the correct order of hierarchy. The countries are listed in a circular order, but the hierarchy is not structured as requested."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "legend colorbar annotations: The figure does not contain a legend. The color coding for regions is not shown. The chart uses a grayscale color scheme, which does not match the requested colors (dark green, yellow, blue, purple, green).; style: The chart uses a grayscale color scheme, which is not the requested color palette. The requested colors are: Europe (dark green), Asia (yellow), Americas (blue), Oceania (purple), and Africa (green). The chart does not use these colors. The chart has a hollow center, which is correct."
+        }
+      ]
+    },
+    {
+      "run_id": "026",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses `pivot_table` with `aggfunc='mean'` to aggregate 'Overall score', but the request does not specify aggregation; it only asks to use 'Overall score' as values. The chart shows a single segment labeled '/CAfrica', which suggests a misinterpretation of the data hierarchy and no proper use | chart: The chart shows a single segment labeled '/CAfrica' with no visible hierarchy or segmentation by 'Major Area', 'Regions', or 'Country'. The 'Overall score' is not used as a value for any segment, and the chart does not reflect the hierarchical structure requested. The center is hollow, but the data,; missing data: code: The code creates a 'path' column and uses it in a pivot table, but the actual sunburst chart is not built using the hierarchical data structure. Instead, it draws concentric circles with colors based on 'Major Area' and labels them, but does not plot the 'Country' or 'Regions' levels. The 'Overall', | chart: The chart shows only a single segment labeled '/CAfrica' with no visible breakdown by 'Major Area', 'Regions', or 'Country'. The hierarchical structure is not represented, and the 'Overall score' is not used as a value for any segment. The legend is present but does not correspond to any plotted; wrong selection: code: The code does not use the 'Overall score' column to determine the size of the segments in the sunburst chart. Instead, it creates concentric circles with fixed radii and colors based on 'Major Area'. The 'path' column is created but not used to plot the hierarchical data. The 'Country' and 'Regions' | chart: The chart shows a single segment labeled '/CAfrica' with no visible segmentation by 'Major Area', 'Regions', or 'Country'. The 'Overall score' is not used as a value for any segment. The chart does not reflect the hierarchical structure requested, and the data from the CSV is not properly; wrong order: code: The code does not plot the data in the requested hierarchical order. The 'Major Area' is used to color the concentric circles, but the 'Regions' and 'Country' are not plotted as segments. The order of 'Major Area' in the code is not specified, but the chart shows a single segment, so the order is | chart: The chart shows a single segment labeled '/CAfrica' with no visible hierarchy or order. The requested order of 'Major Area', 'Regions', and 'Country' is not represented. The chart does not show the correct order of data, and the 'Overall score' is not used to determine the size of the segments."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'Europe' and 'Asia' overlap; 'Europe' and 'Americas' overlap; 'Europe' and 'Oceania' overlap; 'Europe' and 'Africa' overlap (+6 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "028",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses highlight = 2014, but the request asks for the 2015 curve to be highlighted. | chart: The blue curve in the chart corresponds to the year 2014, not 2015 as requested.; missing data: code: The code does not include a legend, which is required by the request. | chart: The chart does not display a legend, even though the request specifies one should be on the right side."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "legend colorbar annotations: There is no legend visible in the figure. The request explicitly asks for a legend positioned on the right side of the diagram.; legend: the request asks for a legend, but the figure has none"
+        }
+      ]
+    },
+    {
+      "run_id": "029",
+      "errors": []
+    },
+    {
+      "run_id": "030",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "title text: the request asks for the exact title `Sharing x per column, y per row`; the figure's titles are ['shared axes']"
+        }
+      ]
+    },
+    {
+      "run_id": "031",
+      "errors": []
+    },
+    {
+      "run_id": "034",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The plot has x and y axes with numerical labels from 0 to 14. The x-axis and y-axis ticks are present and not removed. The top and right spines are visible. There is no title on the plot. The axis labels are not present except for a text label at the bottom of the x-axis that reads 'white = positive; title: the request asks for a title, but the figure has none; ticks: the request asks to remove the y ticks, but tick labels are drawn; the request asks to remove the x ticks, but tick labels are drawn"
+        }
+      ]
+    },
+    {
+      "run_id": "038",
+      "errors": []
+    },
+    {
+      "run_id": "039",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The agent applies Mercator projection scaling to latitude, but the y-axis label is 'Latitude (Mercator)', not 'Latitude'. The plot shows a transformed curve, not y=x. The request asks for a straight line y=x with Mercator scaling, but the agent plots Mercator-scaled latitude against longitude, which | chart: The chart shows a curved line, not a straight line y=x. The y-axis is labeled 'Latitude (Mercator)', indicating Mercator-transformed values. The line is not straight, and the scaling is nonlinear, confirming the Mercator transformation is applied to latitude, not the line itself. The plot does not"
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The figure shows a line plot with a curved line, not a straight line. The line is not y=x, and the x-axis is labeled 'Longitude' and the y-axis is labeled 'Latitude (Mercator)'. The title is 'Mercator Projection'.; axes: The x-axis is labeled 'Longitude' and the y-axis is labeled 'Latitude (Mercator)'. The title is 'Mercator Projection'. The x-axis ranges from -180 to 180, but the y-axis does not range from -180 to 180. The scale is linear, and there is a grid. The y-axis label is 'Latitude (Mercator)', not 'Latitue; style: The line is red, solid, and has no markers. The grid is light gray. The plot uses a Mercator projection, but the line is not straight. The colormap is not specified, but the line is red."
+        }
+      ]
+    },
+    {
+      "run_id": "046",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "dpi: the request asks for 120 dpi; the figure was saved at 100 dpi; text outside image: '33' lies entirely outside the saved image; 'This might seem unnecessary, but it's possible!' lies entirely outside the saved image"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "clipped text: '34' is cut off by the image edge"
+        }
+      ]
+    },
+    {
+      "run_id": "047",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code computes percentages correctly by dividing each source's TWh by the country's total TWh and multiplying by 100, so the values are properly normalized. However, the chart shows only one bar with a single segment, which suggests that the data is not being split by source as required. | chart: The chart displays only one bar with a single blue segment labeled as 'renewables', and the x-axis shows a single tick labeled '47.9' instead of the country names. This indicates that the data is not properly grouped by country or source, and the stacked bar chart is not being generated correctly.; missing data: code: The code reads the data and computes percentages, but the resulting DataFrame is unstacked and plotted, which should produce a stacked bar chart. However, the chart shows only one bar, indicating that the data is not being split into multiple countries or sources as required. | chart: The chart shows only one bar, which is not consistent with the expected five bars (one per country). The legend shows only 'renewables', and the other sources (nuclear and fossil) are missing. This indicates that the data for nuclear and fossil sources is not being plotted.; wrong selection: code: The code reads the data correctly and includes all three sources (nuclear, fossil, renewables) and all five countries. However, the plotting step does not produce the expected stacked bar chart, suggesting that the data is not being selected or plotted correctly. | chart: The chart shows only one bar with a single segment, and the legend shows only 'renewables'. This indicates that the data for nuclear and fossil sources is not being selected or plotted, even though they are present in the input data.; wrong order: code: The code does not specify any order for the countries or sources, but the request specifies the order: France, Germany, Brazil, India, Canada. The chart shows only one bar, so the order cannot be verified. | chart: The chart shows only one bar, so the order of countries cannot be verified. The x-axis label is '47.9', which is not a country name, indicating that the country names are not being displayed correctly."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The figure shows a single bar with a single blue segment, which is not a stacked bar chart. It appears to be a single bar with no segmentation by source.; layout: There is a single plot with no subplots. The x-axis has a single tick label '47.9' instead of the required country names. The y-axis is present but not properly labeled with the required percentage share.; axes: The x-axis label is 'Country' but the tick label is '47.9', which is not a country name. The y-axis label is 'Percentage Share (%)' which is correct. The y-axis starts at 0 and goes to 100, which is correct. However, the x-axis does not have the required country names in the correct order. The y-tic; legend colorbar annotations: There is a legend in the top right corner, but it is incorrectly labeled as '(Percentage, renewables)' and does not include all three sources. It only shows one entry, which is misleading.; style: The chart uses a single blue color for the bar, which is not appropriate for a stacked bar chart with three sources. The bar is not stacked, and there are no distinct colors for each source. The style is not consistent with the requirement for a stacked bar chart with three segments."
+        }
+      ]
+    },
+    {
+      "run_id": "050",
+      "errors": []
+    },
+    {
+      "run_id": "051",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses the 'jet' colormap in the second subplot, which is explicitly forbidden by the request. The request states: 'Do NOT use the jet, rainbow or hsv colormaps anywhere.' | chart: The second subplot (top-right) clearly shows a rainbow-like color gradient, which is characteristic of the 'jet' colormap. This confirms the use of a forbidden colormap.; missing data: code: The code does not include a colorbar for the colored streamplot, which is required by the request. The request states: 'Add a colorbar for the coloured streamplot.' | chart: The second subplot (top-right) does not have a colorbar, even though it is a colored streamplot. This confirms the missing colorbar.; wrong selection: code: The code uses the 'jet' colormap in the second subplot, which is explicitly forbidden by the request. The request states: 'Do NOT use the jet, rainbow or hsv colormaps anywhere.' | chart: The second subplot (top-right) clearly shows a rainbow-like color gradient, which is characteristic of the 'jet' colormap. This confirms the use of a forbidden colormap."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "colormap: the request forbids jet/rainbow/hsv, but the figure uses ['jet']; the request asks for the summer colormap; the figure uses ['autumn', 'gray', 'jet']"
+        }
+      ]
+    },
+    {
+      "run_id": "052",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The sharp interface is drawn as a green vertical line at x=0 and two horizontal green lines at y=0 for x<0 and y=1 for x>0, but the code draws a white vertical line and green horizontal lines, and the color of the vertical line is white, not green. | chart: The chart shows a white vertical line at x=0 and green horizontal lines at y=0 and y=1, but the vertical line is white, not green as requested.; missing data: code: The sharp interface is requested as a green vertical line at x=0 and two horizontal green lines at y=0 for x<0 and y=1 for x>0, but the code only draws a white vertical line and green horizontal lines, and the vertical line is not green. | chart: The chart shows a white vertical line at x=0 and green horizontal lines at y=0 and y=1, but the vertical line is white, not green as requested.; wrong selection: code: The sharp interface is requested as a green vertical line at x=0 and two horizontal green lines at y=0 for x<0 and y=1 for x>0, but the code draws a white vertical line and green horizontal lines, and the vertical line is not green. | chart: The chart shows a white vertical line at x=0 and green horizontal lines at y=0 and y=1, but the vertical line is white, not green as requested.; wrong order: code: The requested order is: blue curve for phase field, orange curve for composition, and green vertical line for sharp interface. The code plots the blue curve, then the orange curve, then the white vertical line, which is not green as requested. | chart: The chart shows the blue curve, then the orange curve, then the white vertical line, which is not green as requested."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'Phase Field: 1/2 * (1 + tanh(gamma * x))' and 'Composition: 1/2 * (1 + tanh(omega * x))' overlap; low contrast or invisible: the series 'Sharp interface' is drawn in the background colour or is invisible"
+        }
+      ]
+    },
+    {
+      "run_id": "053",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "055",
+      "errors": []
+    },
+    {
+      "run_id": "059",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "tick rotation: the request asks for x tick labels rotated by 45 degrees; they are at [0.0]"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'item number 1' and 'item number 2' overlap; 'item number 1' and 'item number 3' overlap; 'item number 1' and 'item number 4' overlap; 'item number 1' and 'item number 5' overlap (+202 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "060",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "dpi: the request asks for 120 dpi; the figure was saved at 100 dpi"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'Poor Quality' and 'Limited Range' overlap; 'Poor Quality' and 'Obsolete Features' overlap; 'Limited Range' and 'Obsolete Features' overlap; 'Ineffective Advertising' and 'Poor Online Presence' overlap (+12 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "062",
+      "errors": []
+    },
+    {
+      "run_id": "065",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "068",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses s = t / 360.0 * np.pi, which is not y = x. The y-values are scaled by pi/360, so the line is not y=x but a scaled version. Additionally, the Mercator projection functions are applied to the y-axis, but the plotted data is not y=x in the original coordinate system. | chart: The chart shows a straight line, but it is not y=x. The line has a slope of approximately 0.0087 (pi/360), not 1. The y-values are much smaller than the x-values, indicating a scaling error. The line is not the identity line.; wrong selection: code: The code plots the line y = (pi/360) * x, which is not y=x. The selection of the data is incorrect. | chart: The chart shows a line that is not y=x, indicating the wrong selection of data."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The x-axis is labeled 'Longitude', the y-axis is labeled 'Latitude', and the title is 'Mercator projection'. The x-axis limits are from -200 to 200, which does not match the requested -180 to 180. The y-axis limits are from -1.5 to 1.5. The grid is turned on, with visible grid lines. The axes are on; style: The line is a solid blue line, not a dotted line as requested. The line style is not dotted. The line represents y=x, but the scaling is not correct due to the Mercator projection, which should affect the y-axis scaling. The line is not dotted, and the x-axis limits are incorrect."
+        }
+      ]
+    },
+    {
+      "run_id": "069",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "missing data: code: The code does not include any filtering or handling of 'NA' values in the 'Regions' column. The request specifies to treat 'NA' in 'Regions' as a string, not a missing value. However, the code uses .dropna(), which removes rows with missing values, including those with 'NA' in 'Regions'. This means | chart: The chart does not show any data for countries or regions where 'Regions' is 'NA'. The absence of these entries in the chart confirms that the 'NA' values were dropped, which contradicts the request to treat 'NA' as a string. The chart is missing data that should have been included.; wrong selection: code: The code uses the 'Major Area' column to determine the color of each segment, which is correct. However, the code does not use the 'Regions' column to determine the color of the segments. Instead, it uses the 'Major Area' to determine the color, which is incorrect. The request specifies that the 'NA | chart: The chart shows that the color of each segment is determined by the 'Major Area', not the 'Regions'. The legend shows the colors for the 'Major Area', but the request specifies that the legend should indicate the color coding for different regions. The chart does not show the correct color coding."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: 'WA' has contrast 1.1:1 against its background; 'EA' has contrast 1.1:1 against its background; 'SEA' has contrast 1.1:1 against its background; 'CCA' has contrast 1.1:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "070",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "indistinguishable series: the series 'cos(y) + y' and 'cos(y) + y/3' share the same colour, line style and marker"
+        }
+      ]
+    },
+    {
+      "run_id": "074",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "clipped text: 'sin(2πt)' is cut off by the image edge"
+        }
+      ]
+    },
+    {
+      "run_id": "075",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "indistinguishable series: the series 'g(s)' and 'g(s + 0.1)' share the same colour, line style and marker"
+        }
+      ]
+    },
+    {
+      "run_id": "077",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The agent's code uses the wrong data for Oroville: it includes 2483.5 and 2617.2 at weeks 25 and 26, but the request specifies 2617.2 and 2483.5. This is a wrong_values error because the data series is incorrect. | chart: The chart shows the Oroville line ending at a value around 2480 in week 26, which matches the agent's incorrect data, not the request's data."
+        }
+      ]
+    },
+    {
+      "run_id": "079",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "style: The colormap used is a gradient from dark blue to light yellow, which is not the CMRmap colormap. The CMRmap colormap is a specific colormap that is not used here. The plot is filled with colors based on the Z value, and the lines are not visible."
+        }
+      ]
+    },
+    {
+      "run_id": "080",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "legend colorbar annotations: There is a legend in the top-right corner with a blue square and the label 'checkouts'. There are no annotations (value labels) on top of the bars."
+        }
+      ]
+    },
+    {
+      "run_id": "081",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The agent uses `np.indices((21, 21, 21)) / 20.0` to create r, g, b arrays, which produces values from 0.0 to 1.0, but the request asks for a cube centered at [0.5, 0.5, 0.5] with side length 0.5. The agent's cube condition `(abs(rc - 0.5) < 0.25)` is correct, but the coordinate system is not aligned | chart: The chart shows a 2D color gradient, not a 3D voxel plot. The axes are labeled 'r' and 'g', but there is no 'b' axis visible, and the plot is flat, not 3D. The figure is a 2D image, not a 3D voxel visualization.; missing data: code: The agent does not create a 3D voxel plot as requested. Instead, it creates a 2D image using `imshow`, which is not a 3D plot. The cube is not visualized in 3D, and the 3D structure is lost. | chart: The chart is a 2D color map, not a 3D voxel plot. The requested 3D structure is not visible, and the plot does not show any voxels or 3D geometry.; wrong selection: code: The agent uses `imshow` to display a 2D slice of the color array, which is not the requested 3D voxel plot. The code does not use `ax.voxels` to create the 3D plot, and instead falls back to `imshow` when `voxels` is not available, which is incorrect. | chart: The chart is a 2D image, not a 3D plot. The requested 3D voxel plot is not shown, and the plot does not represent the cube in 3D space."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The figure shows a 2D color gradient plot, not a 3D voxel plot. It appears to be a heatmap or a 2D color map with axes labeled 'r' and 'g'.; layout: There is a single 2D plot, not a 3D plot. There are no subplots or shared axes.; axes: The x-axis is labeled 'r' and the y-axis is labeled 'g'. There is no label for the third dimension, and the plot is 2D, not 3D. The title is missing. The axes are not labeled with 'b' as required. The aspect ratio is not equal, and the plot does not show a cube or 3D structure.; style: The colormap used is a gradient from blue to green to yellow to red, which is not explicitly forbidden. However, the plot is 2D, not 3D, and does not show voxels. The colors are not applied to a 3D cube structure. The edge colors are not brighter variants of face colors. The figure does not use the; title: the request asks for a title, but the figure has none; projection: the request asks for a 3D plot, but no panel is 3D"
+        }
+      ]
+    },
+    {
+      "run_id": "082",
+      "errors": []
+    },
+    {
+      "run_id": "083",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "covered content: There is no legend, annotation, or text box that hides any data, labels, or other text in any of the four plots. All elements are clearly visible and not obscured.; squeezed layout: The four plots are arranged in a 2x2 grid. Each plot has sufficient space around it, and the axes, labels, and data are not crushed into a sliver. The plots do not overlap with each other."
+        }
+      ]
+    },
+    {
+      "run_id": "086",
+      "errors": []
+    },
+    {
+      "run_id": "087",
+      "errors": []
+    },
+    {
+      "run_id": "089",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "090",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "axis label: the request asks for a x axis label, but no panel has one"
+        }
+      ]
+    },
+    {
+      "run_id": "091",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "spines: the request asks to hide the right spine, but it is drawn; the request asks to hide the top spine, but it is drawn"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'center' and '3' overlap"
+        }
+      ]
+    },
+    {
+      "run_id": "096",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "097",
+      "errors": []
+    },
+    {
+      "run_id": "098",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "layout: There is a single plot with two lines. The plot has one x-axis and two y-axes (left and right), which are not explicitly labeled as such but are visually distinct in scale. The y-axis on the left is for 'Data 1' (exponential) and the y-axis on the right is for 'Data 2' (sine), though only one y-axis; axes: The x-axis is labeled 'Time (s)' and ranges from 0 to 10. The y-axis is labeled 'Amplitude' and ranges from 0 to 20000, with tick marks at intervals of 5000. The scale is linear. The y-axis has no explicit right-side scale, and the tick labels are not rotated. The spines are visible, and there is no"
+        }
+      ]
+    },
+    {
+      "run_id": "099",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses `np.random.rand(N)` for both radii and width, but the request specifies that the bar positions, diameters, and thicknesses should be determined by linearly spaced and random values respectively. The code uses random values for both radii and width, but does not use linear spacing for ' | chart: The chart shows 30 bars with varying radii and widths, but the radial tick labels (y ticks) are visible, which contradicts the requirement to remove them entirely. The bars are plotted with a polar projection, and the title is present. However, the transparency is not visibly set to 0.5, and the y-t"
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The plot has a title: 'Polar bar plot with 30 random bars'. The radial axis (y-axis) has tick labels (2, 4, 6, 8, 10) and gridlines are visible. The angular axis (x-axis) has tick labels at 0°, 45°, 90°, etc. The radial tick labels are not removed. The radial axis has a scale from 0 to 10. The plot,; ticks: the request asks to remove the y ticks, but tick labels are drawn; grid: the request asks for gridlines, but none are drawn"
+        }
+      ]
+    },
+    {
+      "run_id": "103",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "104",
+      "errors": []
+    },
+    {
+      "run_id": "105",
+      "errors": []
+    },
+    {
+      "run_id": "106",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong selection: code: The agent uses the 'jet' colormap, which is explicitly prohibited by the request. The request requires the use of the 'CMRmap' colormap, but the code uses 'jet'. | chart: The chart displays a color gradient that is characteristic of the 'jet' colormap, confirming that the wrong colormap was used."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "colorbar: the request asks for a colorbar, but the figure has none; colormap: the request forbids jet/rainbow/hsv, but the figure uses ['jet']; the request asks for the CMRmap colormap; the figure uses ['jet']; the request asks for the CMRmap colormap; the figure uses ['jet']"
+        }
+      ]
+    },
+    {
+      "run_id": "108",
+      "errors": []
+    },
+    {
+      "run_id": "111",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code generates z_values using np.random.rand(num_bars), which produces values between 0 and 1. However, the request specifies that the y values should be an array of 30 random numbers, and these should be used as the y positions for the bars. The code incorrectly uses the y positions as the loop | chart: The chart shows bars with varying heights (z-values) that are random, but the y-axis represents discrete layers (y=0, y=1, y=2, y=3), not the random y values. The x-axis shows values from 0 to 29, but the y-axis does not reflect the random y values as requested. The bars are plotted on the plane y=k"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: '10' and '11' overlap; '11' and '12' overlap; '12' and '13' overlap; '13' and '14' overlap (+15 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "112",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "figure size: the request asks for 7 by 6 inches; the figure is 5.00 by 4.00 inches"
+        }
+      ]
+    },
+    {
+      "run_id": "115",
+      "errors": []
+    },
+    {
+      "run_id": "117",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses a 2D plot instead of a 3D plot, and the axes are labeled 'u' and 'v', but 'w' is not plotted as a third axis. | chart: The chart is a 2D plot with axes labeled 'u' and 'v', and no third axis for 'w'. The plot shows a 2D projection of the Rossler attractor, not a 3D representation.; missing data: code: The code does not create a 3D subplot, and the 'w' axis is not plotted. | chart: The chart is 2D and does not include the 'w' axis, so the data for 'w' is missing from the plot.; wrong selection: code: The code plots only 'u' and 'v' axes, but the request asks for 'u', 'v', and 'w' axes in a 3D plot. | chart: The chart shows only 'u' and 'v' axes, and the 'w' axis is not present, indicating that the wrong selection of axes was made."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The figure shows a 2D plot of a spiral-like trajectory, which appears to be a projection of a 3D attractor onto a 2D plane. However, the requested chart type is a 3D plot.; layout: The figure contains a single 2D subplot, not a 3D subplot as requested.; axes: The x-axis is labeled 'u', but the y-axis is labeled 'v' instead of 'w'. The title is 'Rossler Attractor', which matches. The grid is visible. However, the axes are not labeled with 'u', 'v', and 'w' as required; only 'u' and 'v' are present, and 'w' is missing. The plot is 2D, not 3D, so there is a; style: The line width appears to be thin, possibly 0.5 as requested, but the line style is a solid line. The color is blue, which is acceptable. However, the plot is 2D, not 3D, and the axes are not properly labeled with 'u', 'v', and 'w'.; grid: the request asks for gridlines, but none are drawn; projection: the request asks for a 3D plot, but no panel is 3D"
+        }
+      ]
+    },
+    {
+      "run_id": "124",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: '0.25' and '0.50' overlap; '0.50' and '0.75' overlap; '0.75' and '1.00' overlap; '1.00' and '1.25' overlap (+3 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "125",
+      "errors": []
+    },
+    {
+      "run_id": "126",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The function defined in the code is (x - 4) * (x - 6) * (x - 8) + 60, but the request specifies the equation (z - 4) * (z - 6) * (z - 8) + 90. | chart: The plotted curve matches the function (x - 4) * (x - 6) * (x - 8) + 60, not the requested +90, so the y-values are shifted down by 30 units."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The x-axis is labeled 'x'. The y-axis is labeled 'y'. The x-axis limits are from 0 to 11. The y-axis starts at 0. The y-ticks and y-tick labels are removed. The top and right spines are hidden. The x-ticks at 3 and 10 are present with labels 'a' and 'b' respectively. The title is 'f(x) = (x-4)(x-6)(; legend colorbar annotations: There is no legend or colorbar. There is a text annotation in the shaded region that reads '∫ f(x)dx' with 'a' and 'b' as limits. The text is not the exact integral formula requested."
+        }
+      ]
+    },
+    {
+      "run_id": "128",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The y values are generated as np.random.randn(30) * 5 + k, which produces random numbers centered around k with a standard deviation of 5, but the request only specifies that y values should be an array of 30 random numbers without specifying a distribution or scale. However, the key issue is that y | chart: The chart shows multiple y values (layers) from -5 to 5, but the request specifies that the y values should be an array of 30 random numbers for a single layer y=k. The plot shows multiple layers, which contradicts the request for a single layer y=k.; missing data: code: The request asks for a 3D bar plot with a fixed random state and four colors: 'purple', 'orange', 'grey', and 'pink', each corresponding to a unique set of data for the y=k layer. The code creates four sets of data, each with 30 bars, and colors them accordingly. However, the code only plots one y=k | chart: The chart shows multiple y values (layers) from -5 to 5, but the request specifies that the y values should be an array of 30 random numbers for a single layer y=k. The plot shows multiple layers, which contradicts the request for a single layer y=k.; wrong selection: code: The request specifies that the x values should range from 0 to 29, and the y values should be an array of 30 random numbers for the y=k layer. The code correctly generates x values from 0 to 29 and y values as random numbers centered around k. However, the code plots multiple layers, which is not in | chart: The chart shows multiple y values (layers) from -5 to 5, but the request specifies that the y values should be an array of 30 random numbers for a single layer y=k. The plot shows multiple layers, which contradicts the request for a single layer y=k.; wrong order: code: The request does not specify an order for the bars, so the order is not a concern. However, the code plots the bars in the order of the colors list, which is 'purple', 'orange', 'grey', 'pink', and then 'black' for the last bar of each set. This order is not specified in the request, so it is not a | chart: The chart shows multiple y values (layers) from -5 to 5, but the request specifies that the y values should be an array of 30 random numbers for a single layer y=k. The plot shows multiple layers, which contradicts the request for a single layer y=k."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The x-axis is labeled 'X' and ranges from 0 to 30. The y-axis is labeled 'Y (Layer)' and shows discrete values from -5 to 5. The z-axis is labeled 'Z (Height)' and ranges from 0 to 20. The y-axis labels are discrete values, but they are not the requested 30 random numbers; instead, they are integers; style: The bars use multiple colors: purple, orange, grey, and pink are not all present. The colors used are more varied, including shades of purple, gold, grey, and black. The last bar in each group is black, which matches the request. The bars have 80% opacity. The colors are not explicitly named as 'pur"
+        }
+      ]
+    },
+    {
+      "run_id": "129",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses `years = [c for c in df.columns if c != '2019']`, which excludes the 2019 data from the loop. The chart shows data for 2015, 2016, 2017, and 2018, but not 2019. | chart: The chart displays four horizontal bars for the years 2015, 2016, 2017, and 2018, but there is no data for 2019. The 2019 data is missing from the visualization.; missing data: code: The code excludes the 2019 column from the years list, so the 2019 data is not processed in the loop. The chart does not include any data for 2019. | chart: The chart shows data for 2015, 2016, 2017, and 2018, but there is no bar or ring for 2019, indicating that the 2019 data is missing.; wrong selection: code: The code processes only the years 2015 to 2018, excluding 2019. The chart reflects this by showing only these four years. | chart: The chart includes data for 2015, 2016, 2017, and 2018, but omits 2019, which is a required year in the request.; wrong order: code: The code iterates over years in the order 2015, 2016, 2017, 2018, and plots them from bottom to top. The chart shows 2015 at the bottom and 2018 at the top, which is the reverse of the requested order (2015 innermost, 2019 outermost). | chart: The chart shows 2015 at the bottom and 2018 at the top, with the years increasing upwards. This is the reverse of the requested order, where 2015 should be the innermost ring and 2019 the outermost."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The figure displays a horizontal bar chart, with each bar representing a year (2015-2018) and the segments within the bar representing the market share of different Windows versions. This is not a doughnut chart.; layout: The figure consists of a single subplot with four horizontal bars stacked vertically. The layout is not a concentric doughnut chart as requested.; axes: The chart has a horizontal x-axis labeled 'Market share (%)' with a scale from 0 to 140. There is no y-axis label, but the years (2015, 2016, 2017, 2018) are used as labels for the bars. The title is 'Desktop Windows Version Market Share Worldwide', which matches the request. However, the chart is a; legend colorbar annotations: A legend is present on the right side of the chart, correctly associating the colors with the Windows versions (WinXP, Win7, Win8.1, Win10). The market share percentages are directly annotated on the segments. However, the white section for 'other' operating systems is not at the top of each ring, a; style: The chart uses a color palette with distinct colors for each Windows version. The colors are not progressively darkening for each subsequent year as requested. The white section for 'other' operating systems is not aligned at the top of each ring. The figure is not a doughnut chart, and the"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: '11.8%' has contrast 2.4:1 against its background; '60.5%' has contrast 2.1:1 against its background; '16.9%' has contrast 2.3:1 against its background; '4.0%' has contrast 2.3:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "130",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses the 'jet' colormap instead of the requested 'viridis' colormap. | chart: The chart uses a 'jet' colormap, which is a rainbow-like color scheme, not the requested 'viridis' colormap.; wrong selection: code: The code uses the 'jet' colormap instead of the requested 'viridis' colormap. | chart: The chart uses a 'jet' colormap, which is a rainbow-like color scheme, not the requested 'viridis' colormap."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "dpi: the request asks for 120 dpi; the figure was saved at 72 dpi; colormap: the request asks for a perceptually uniform colormap; the figure uses ['jet']"
+        }
+      ]
+    },
+    {
+      "run_id": "131",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses a 4x1 grid of subplots instead of a 2x2 grid as requested. | chart: The chart shows a 4x1 grid of subplots, not a 2x2 grid.; missing data: code: The code does not plot the requested data in a 2x2 grid; it uses a 4x1 grid. | chart: The chart shows four subplots in a single column, not arranged in a 2x2 grid.; wrong selection: code: The code uses data1 for the first two subplots and data2 for the last two, but the arrangement is incorrect. | chart: The chart shows the correct data types but in the wrong layout.; wrong order: code: The subplots are arranged in a 4x1 grid, not a 2x2 grid, so the order is incorrect. | chart: The chart shows the subplots in a single column, not in the requested 2x2 arrangement."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The figure has no explicit axis labels (x or y) on any of the subplots. The y-axis on the top-left plot ranges from 0 to 6, and the x-axis ranges from 0 to 70. The top-right plot has a y-axis from 0 to 1 and an x-axis from 0 to 70. The bottom-left plot has a y-axis from 0 to 100 and an x-axis from 0"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "covered content: The text annotations 'vertical, uniform data', 'horizontal, gamma data', and 'vertical, gamma data' are placed directly over the data points in their respective panels, covering a portion of the data. This makes it difficult to see the underlying data in those areas.; overlapping text: '0' and '0.8' overlap; '0.2' and '150' overlap; '0' and '15' overlap"
+        }
+      ]
+    },
+    {
+      "run_id": "135",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: 'Marketing and Sales Strategy' has contrast 1.9:1 against its background; 'Customer Service' has contrast 2.3:1 against its background; 'Pricing Strategy' has contrast 1.8:1 against its background; 'Market Conditions' has contrast 1.2:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "136",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong order: code: The first bar is at y=10, the second at y=20. The y-tick labels are set to [10.5, 20.5] with labels ['Bill', 'Jim']. This means 'Bill' is at y=10.5 (bottom) and 'Jim' at y=20.5 (top). However, the request says the first bar (blue) should be at y=10 with height 11, and the second (orange, green, red) | chart: The chart shows 'Bill' at the bottom (y=10.5) and 'Jim' at the top (y=20.5). The blue bar is at the bottom, and the orange/green/red bar is at the top. This means the blue bar is labeled 'Bill' and the multi-colored bar is labeled 'Jim'. But the request says the first bar (blue) should be at y=10, y"
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The x-axis is labeled 'seconds since start', which matches the request. The y-axis has tick labels 'Bill' and 'Jim', but they are in reverse order (Bill is at the bottom, Jim at the top), which is incorrect. The y-axis labels are not reversed in the request, so this is a violation. The grid lines on; legend colorbar annotations: There is an annotation at (55, 28) with the text 'race interrupted' and a red arrow, which matches the request. However, the annotation is placed at (55, 28), which is not the correct y-position for the bars. The annotation is also not properly aligned with the bars. The annotation is present, but"
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "covered content: The red text 'race interrupted' covers the top portion of the green bar, hiding part of the data.; low contrast or invisible: 'race interrupted' has contrast 1.3:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "141",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong order: code: The code plots the countries in the order they appear in the results dictionary: USA, UK, Germany, Spain, China, Italy. However, the chart shows the countries in the order: Italy, China, Spain, Germany, UK, USA. This is a different order. | chart: The chart shows the countries in the order: Italy, China, Spain, Germany, UK, USA, which is not the same as the order in the code (USA, UK, Germany, Spain, China, Italy). The y-axis labels are in a different order than the data."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: '13' has contrast 1.7:1 against its background; '15' has contrast 1.0:1 against its background; '34' has contrast 1.5:1 against its background; '26' has contrast 1.7:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "142",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses only the first four sports from the category_names list, excluding 'Tennis' which is the fifth sport in the requested data. | chart: The chart shows only four categories (Football, Volleyball, Basketball, Formula 1) and omits 'Tennis', which is part of the requested data.; missing data: code: The code uses only the first four sports from the category_names list, excluding 'Tennis' which is the fifth sport in the requested data. | chart: The chart shows only four categories (Football, Volleyball, Basketball, Formula 1) and omits 'Tennis', which is part of the requested data.; wrong selection: code: The code uses only the first four sports from the category_names list, excluding 'Tennis' which is the fifth sport in the requested data. | chart: The chart shows only four categories (Football, Volleyball, Basketball, Formula 1) and omits 'Tennis', which is part of the requested data."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The figure shows a horizontal stacked bar chart."
+        }
+      ]
+    },
+    {
+      "run_id": "143",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The x-axis of the third subplot is not on a base-3 logarithmic scale as requested. The code uses a linear scale for the x-axis in ax3, while the request specifies a base-3 logarithmic scale on the x-axis for the third subplot. | chart: The third subplot shows a linear x-axis, not a base-3 logarithmic scale. The x-axis values are evenly spaced from 0 to 25, which is linear, not logarithmic with base 3.; missing data: code: The fourth subplot uses a different data generation method than requested. The request specifies that the fourth subplot should plot cubed data generated by raising 15 to the power of a linearly spaced array, but the code generates x as 15.0 ** np.linspace(0.0, 2.0, 15) and y as x ** 3.0, which is a | chart: The fourth subplot shows data points with error bars, but the x-values are not evenly spaced from 0.02 to 25.0 as requested. Instead, the x-values are generated using 15.0 ** np.linspace(0.0, 2.0, 15), which results in a non-uniform distribution.; wrong selection: code: The data range for the first three subplots is not evenly spaced from 0.02 to 25.0 with a step of 0.02 as requested. The code uses np.arange(0.02, 25.0 + 0.01, 0.02), which is correct, but the fourth subplot uses a different data range. | chart: The first three subplots use the correct data range from 0.02 to 25.0 with a step of 0.02, as seen in the x-axis of the first subplot. However, the fourth subplot uses a different data range, which is not evenly spaced from 0.02 to 25.0."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: First subplot (top-left): y-axis is logarithmic (log scale), x-axis is linear. Second subplot (top-right): x-axis is logarithmic (log scale), y-axis is linear. Third subplot (bottom-left): x-axis is logarithmic (base 3), y-axis is linear. Fourth subplot (bottom-right): y-axis is logarithmic, x-axis:"
+        }
+      ]
+    },
+    {
+      "run_id": "145",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "146",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'Decreased Sales Performance' and 'Customer Service' overlap; 'Decreased Sales Performance' and 'Slow Response Time' overlap; 'Decreased Sales Performance' and 'Lack of Personalization' overlap; 'Decreased Sales Performance' and 'Poor After-Sales Support' overlap (+6 more)"
+        }
+      ]
+    },
+    {
+      "run_id": "150",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "missing data: code: The request asks for multiple polygons to fill under a series of 3D line graphs. The code creates polygons using plot_surface, but the polygons are not visible in the chart. The chart shows only the 3D lines and the grid, but no filled polygons under the lines. | chart: The chart shows only the 3D lines and the grid, but no filled polygons under the lines. The polygons are not visible, indicating that the code did not successfully create the requested polygons."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "colormap: the request asks for the reversed plasma colormap; the figure uses ['plasma']"
+        }
+      ]
+    },
+    {
+      "run_id": "153",
+      "errors": []
+    },
+    {
+      "run_id": "155",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The first plot uses a Mobius strip formula, not the requested function of p and q. The second plot uses a different formula (cos(radii) * cos(3*angles)) instead of the requested one for radius and angle pairs. | chart: The first plot shows a Mobius strip, not the function specified in the request. The second plot shows a surface with a different formula, not the one requested.; missing data: code: The requested function for the first plot is not implemented; instead, a Mobius strip is plotted. The second plot's function is also incorrect. | chart: The first plot does not show the requested function; it shows a Mobius strip. The second plot does not show the requested function; it shows a different surface.; wrong selection: code: The code uses a Mobius strip formula for the first plot and a different formula for the second plot, neither matching the requested functions. | chart: The first plot shows a Mobius strip, not the requested function. The second plot shows a different surface, not the requested one."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "colormap: the request forbids jet/rainbow/hsv, but the figure uses ['jet']"
+        }
+      ]
+    },
+    {
+      "run_id": "156",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses `plt.ylim(0, max(sessions) * 1.1)` to set the y-axis, which is acceptable as it ensures the axis starts at 0 and extends above the maximum value. However, the y-axis in the chart does not start at 0; it starts at approximately 38,000, which contradicts the requirement that the y-axis ' | chart: The y-axis in the chart starts at approximately 38,000, not at 0, as required. The grid lines and axis labels begin above 0, indicating that the y-axis does not start at 0."
+        }
+      ]
+    },
+    {
+      "run_id": "161",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses ax2 = ax1, which means both data1 and data2 are plotted on the same axis (ax1), not on separate left and right axes as required. The request specifies using twinx() to create a secondary y-axis for data2, but the code does not do this. | chart: The chart shows two lines on the same axis: exp(t) (red) and sin(2πt) (blue), both sharing the same y-axis. There is no secondary y-axis on the right side, and the y-axis is logarithmic, but only one y-axis is visible. The sin series is plotted with a solid line, not a dotted line as requested."
+        }
+      ]
+    },
+    {
+      "run_id": "163",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The agent uses np.argmax(Z) and np.argmin(Z) to find the location of the maximum and minimum values of Z, but this is incorrect because np.argmax(Z) returns the index of the maximum value in the flattened array, not the (x, y) coordinates. The correct approach is to use np.unravel_index(np.argmax(Z, | chart: The marker is placed at (x=60, y=40), which corresponds to the last point in the grid (x=3.0, y=2.0), not the actual maximum of f(x,y)=sin(x)cos(y), which occurs at (x=-1.57, y=0.0). The annotation also points to this incorrect location. The colorbar shows the correct range and levels, and the plot"
+        }
+      ]
+    },
+    {
+      "run_id": "164",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The x-axis limits are set to (5, 200) instead of starting at 0 as required. | chart: The x-axis starts at 5, not 0, as shown by the tick marks and the grid lines beginning at 5.; missing data: code: The first broken bar (for Bill) is drawn with two segments at 98 and 128, but the second bar (for Jim) is drawn with three segments at 8, 132, and 99, which is not the requested order. | chart: The bar for Bill (y=10) has segments at 98 and 128, and the bar for Jim (y=20) has segments at 8, 132, and 99, but the order of the segments in the second bar is not as requested.; wrong selection: code: The y-axis labels are set to ['Bill', 'Jim'] at y=15 and y=25, but the bars are drawn at y=10 and y=20, so the labels are misaligned. | chart: The label 'Bill' is at y=15, but the bar for Bill is at y=10; the label 'Jim' is at y=25, but the bar for Jim is at y=20.; wrong order: code: The y-axis labels are set to ['Bill', 'Jim'] at y=15 and y=25, but the bars are drawn at y=10 and y=20, so the labels are misaligned. | chart: The label 'Bill' is at y=15, but the bar for Bill is at y=10; the label 'Jim' is at y=25, but the bar for Jim is at y=20."
+        }
+      ]
+    },
+    {
+      "run_id": "165",
+      "errors": []
+    },
+    {
+      "run_id": "166",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "ticks: the request asks to remove the y ticks, but tick labels are drawn; projection: the request asks for a polar plot, but no panel is polar"
+        }
+      ]
+    },
+    {
+      "run_id": "167",
+      "errors": []
+    },
+    {
+      "run_id": "168",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "169",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "axes: The scatter plot has x and y axis labels exactly as 'x' and 'y'. The x-axis limits are set to -4 to 4. The y-axis of the scatter plot is from -4 to 4, but the marginal histograms have different scales: the top histogram has a y-axis from 0 to 100, and the right histogram has an x-axis from 0 to 100."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: '2' and '0' overlap; '3' and '50' overlap; '2' and '0' overlap; '3' and '50' overlap"
+        }
+      ]
+    },
+    {
+      "run_id": "170",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The second row of the plot uses gamma-distributed data with shape=5 and size=80x70, but the chart shows that the data has 160 rows instead of 80. | chart: The horizontal event plot in the bottom-left corner (labeled 'Horizontal Event Plot (Gamma)') shows 160 distinct event lines, indicating that the data array has 160 rows. This contradicts the request for a size of 80x70."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "covered content: In the bottom-left plot, the red data points are so dense that they cover the axis labels and tick labels, making them difficult to read. In the bottom-right plot, the orange data points are dense and cover the axis labels and tick labels."
+        }
+      ]
+    },
+    {
+      "run_id": "171",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "173",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "covered content: The text box with the integral expression covers a portion of the blue curve and the shaded area, hiding parts of the data. This is a form of covered content."
+        }
+      ]
+    },
+    {
+      "run_id": "175",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "axis label: the request asks for a x axis label, but no panel has one; projection: the request asks for a 3D plot, but no panel is 3D"
+        }
+      ]
+    },
+    {
+      "run_id": "177",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The agent uses ax1.bar(labels, overall_ratios, color=[...]) to draw the fruit distribution, which creates a bar chart instead of a pie chart. The request explicitly requires a pie chart for the fruit distribution. | chart: The left subplot is a bar chart, not a pie chart, showing the fruit distribution as bars with heights corresponding to 0.35, 0.45, and 0.20 for Apples, Oranges, and Bananas respectively. This confirms the code's incorrect use of a bar chart instead of a pie chart.; missing data: code: The agent does not plot a pie chart for the fruit distribution as required. Instead, a bar chart is drawn. The stacked bar chart for age groups is present, but the pie chart is missing. | chart: The left subplot is a bar chart, not a pie chart, indicating that the pie chart is missing. The right subplot correctly shows a stacked bar chart for age groups, but the left subplot fails to show the required pie chart.; wrong selection: code: The agent uses ax1.bar(...) to plot the fruit distribution, which is incorrect as it should be a pie chart. The data used (overall_ratios) is correct, but the chart type is wrong. | chart: The left subplot is a bar chart, not a pie chart, showing the fruit distribution. The data values are correct, but the chart type is wrong, indicating a wrong selection of chart type.; wrong order: code: The agent plots the fruit distribution as a bar chart with the order Apples, Oranges, Bananas, which matches the requested order. The stacked bar chart for age groups is plotted in reverse order (Over 50, 30-50, 18-30, Under 18) due to the reversed iteration, which is incorrect. | chart: The left subplot shows the bar chart in the correct order: Apples, Oranges, Bananas. The right subplot shows the stacked bar chart with the order: Over 50, 30-50, 18-30, Under 18, which is the reverse of the requested order."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "chart type: The left panel is a bar chart (vertical, not stacked), and the right panel is a stacked bar chart. There is no pie chart.; axes: The left subplot has a title 'Fruit basket' and x-axis labels 'Apples', 'Oranges', 'Bananas'. The right subplot has a title 'Age of apple lovers' and a y-axis with no label. The x-axis is not visible. The y-axis has no scale labels. The bars are stacked, but the labels are on the bars, not on the y-; style: The figure uses a standard color palette (blue, orange, green, and shades of blue for the stacked bar). The lines connecting the pie chart to the bar chart are not present. The colors are not explicitly named, but the colors are distinct. The figure does not use a pie chart."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "covered content: The legend box for the stacked bar chart is positioned over the right side of the bar, covering parts of the 'Over 50' and '30-50' segments. This obscures the data in those regions.; overlapping text: '40%' and 'Under 18' overlap; indistinguishable series: the series 'Over 50' and '30-50' share the same colour, line style and marker"
+        }
+      ]
+    },
+    {
+      "run_id": "180",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "legend colorbar annotations: There is a color bar on the right side labeled 'Z Value', which corresponds to the colormap used. The colormap is not CMRmap; it appears to be a gradient from dark blue to yellow to white, which is not CMRmap.; style: The plot uses a filled 3D tricontour with a colormap that is not CMRmap. The surface is filled with color based on the Z value, and the lines are not explicitly styled with markers or specific line styles. The colormap used is a gradient from dark blue to yellow to white, which is not CMRmap."
+        }
+      ]
+    },
+    {
+      "run_id": "181",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "183",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code includes all continents (Africa, Asia, Europe) but the request specifies only Asia and Europe. | chart: The chart includes Africa in the inner ring, which is not requested.; missing data: code: The code does not filter out Africa, so Africa is included in the plot. | chart: The chart shows Africa as one of the inner ring segments, which is not allowed by the request.; wrong selection: code: The code filters for continents in ['Africa', 'Asia', 'Europe'] but the request asks for only Asia and Europe. | chart: The chart includes Africa, which is not requested, and excludes no other continents, so the selection is incorrect."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "legend: the request asks for a legend, but the figure has none"
+        }
+      ]
+    },
+    {
+      "run_id": "191",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "indistinguishable series: The legend clearly distinguishes five regions: Europe (dark green), Asia (yellow), Americas (blue), Oceania (purple), and Africa (dark green). However, both Europe and Africa are represented by the same dark green color, which is a problem. The legend labels 'Europe' and 'Africa' are both associated"
+        }
+      ]
+    },
+    {
+      "run_id": "195",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses 'sizes * 0.5' to scale the point sizes, but the actual values in the data (e.g., Engine Displacement in the thousands) are not scaled down, leading to extremely large point sizes in the plot. This is a unit scaling issue. | chart: The points in the 3D plot and projections are excessively large, making the visualization cluttered and unreadable, which confirms the scaling error in the code.; missing data: code: The code does not include the 'Weight(kg)' column in any of the plots, which is a required dimension in the request. | chart: The 'Weight(kg)' column is not used in any of the plots, and no data related to weight is visible in the figure.; wrong selection: code: The code uses 'Engine Displacement(cc)' for both size and color, which is correct, but the projections are not correctly labeled or positioned as per the request. | chart: The projections are present but mislabeled and mispositioned; the ZX projection is labeled as 'ZX Plane Projection' but the axes are incorrect, and the YZ projection is labeled correctly but the axes are swapped."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: '22.5' has contrast 2.3:1 against its background; '30' has contrast 2.3:1 against its background"
+        }
+      ]
+    },
+    {
+      "run_id": "196",
+      "errors": []
+    },
+    {
+      "run_id": "199",
+      "errors": []
+    },
+    {
+      "run_id": "200",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "low contrast or invisible: the series 'Group 2' is drawn in the background colour or is invisible"
+        }
+      ]
+    },
+    {
+      "run_id": "202",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "grid: the request asks for gridlines, but none are drawn"
+        }
+      ]
+    },
+    {
+      "run_id": "203",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses theta as the x-coordinate and r as the y-coordinate in the scatter plot, but the request specifies that the positions should be determined by random values for radial distance and angle, which should be plotted as (theta, r) in polar coordinates. However, the plot is not in polar form; | chart: The chart shows a Cartesian scatter plot with theta on the x-axis and r on the y-axis, not a polar projection. The grid is Cartesian, not polar, and the points are not arranged in a circular pattern as expected in a polar plot.; missing data: code: The code does not use a polar projection for the axes, which is a requirement. The plot is in Cartesian coordinates, not polar. | chart: The chart is a Cartesian scatter plot with a grid, not a polar grid. The axes are labeled as x and y, not as theta and r, and the data points are not plotted in a circular pattern.; wrong selection: code: The code plots theta vs r, but the request asks for a polar projection where the radial distance and angle should be used to determine the positions. The code does not use a polar projection, so the selection of axes is incorrect. | chart: The chart shows a Cartesian plot, not a polar one. The data points are not arranged in a circular pattern, and the axes are not labeled as polar coordinates."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "colorbar: the request asks for a colorbar, but the figure has none; projection: the request asks for a polar plot, but no panel is polar"
+        }
+      ]
+    },
+    {
+      "run_id": "204",
+      "errors": []
+    },
+    {
+      "run_id": "205",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong order: code: The code defines the labels in the order ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5', 'Hurray!'] and assigns positions from 0.1 to 0.9, so the first phase is at the bottom and the last at the top, which is the reverse of the requested order. | chart: The chart shows 'Phase 1' at the bottom and 'Hurray!' at the top, which is the reverse of the requested order."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: The text 'Hurray!' is printed directly on top of the blue rectangle labeled 'Phase 5', making it partially obscured."
+        }
+      ]
+    },
+    {
+      "run_id": "206",
+      "errors": []
+    },
+    {
+      "run_id": "208",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "209",
+      "errors": []
+    },
+    {
+      "run_id": "210",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The Rossler attractor equations are implemented incorrectly. The correct equations are: du/dt = -v - w, dv/dt = u + a*v, dw/dt = b + w*(u - c). The agent's code uses du = -v - w, dv = u + a*v, dw = b + w*(u - c), which is correct. However, the agent's code uses the wrong initial values: (1., 1., 1.) | chart: The chart shows a Rossler attractor, but the axes are labeled u, v, w, and the plot is a 3D line with a line width of 0.5. The title is 'Rossler Attractor'. The plot appears to be correct, but the initial values are not (1., 1., 1.)"
+        }
+      ]
+    },
+    {
+      "run_id": "212",
+      "errors": [
+        {
+          "family": "wrong_chart",
+          "evidence": "legend colorbar annotations: There is a legend present, but it is incomplete and does not clearly identify the species. The legend shows a blue dot labeled 'se', which is not a valid species name. The figure does not show a legend that clearly identifies each species by its corresponding color."
+        },
+        {
+          "family": "hard_to_read",
+          "evidence": "indistinguishable series: the series 'setosa' and 'versicolor' share the same colour, line style and marker"
+        }
+      ]
+    },
+    {
+      "run_id": "213",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses the second column (Men's millions of dollars) instead of the first (Woman's millions of dollars). | chart: The chart shows a distribution of values that are much lower than the actual data (e.g., Min = 498, Max = 1598), which is consistent with the 'Men's millions of dollars' column, not the 'Woman's millions of dollars' column (which has values like 1873, 1991, 2403, etc.).; missing data: code: The code does not plot the requested 'Women's millions of dollars' column; it plots 'Men's millions of dollars'. | chart: The chart is labeled 'Distribution of women's earnings' but the data shown is clearly from the 'Men's millions of dollars' column, as the values are lower and the distribution matches the men's data.; wrong selection: code: The code selects the second column (Men's millions of dollars) instead of the first (Woman's millions of dollars). | chart: The histogram and box plot show data from the 'Men's millions of dollars' column, not the 'Women's millions of dollars' column."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "ticks: the request asks to remove the y ticks, but tick labels are drawn"
+        }
+      ]
+    },
+    {
+      "run_id": "214",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses `np.full_like(t, i)` to assign y-coordinates for each frequency line, where `i` ranges from 0 to 4. This places the lines at y=0, 1, 2, 3, 4. However, the request specifies that the y-axis should be elongated to twice the length of the x-axis, and the y-axis should represent frequency. | chart: The chart shows the y-axis labeled as 'Frequency (Hz)' with values 0, 1, 2, 3, 4, which is incorrect. The y-axis should represent actual frequency values (100, 200, 300, 400, 500 Hz) and be scaled appropriately. The y-axis is not elongated to twice the length of the x-axis as requested."
+        },
+        {
+          "family": "wrong_chart",
+          "evidence": "ticks: the request asks to remove the y ticks, but tick labels are drawn"
+        }
+      ]
+    },
+    {
+      "run_id": "216",
+      "errors": []
+    }
+  ]
+}

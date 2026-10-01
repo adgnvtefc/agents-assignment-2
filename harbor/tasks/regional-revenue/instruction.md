@@ -16,29 +16,37 @@ Save the figure as figure.png.
 
 ## Required outputs
 
-Leave these behind in `/app`, which is also the working directory. `plot.py` must
-refer to these files by bare filename rather than by absolute path. State this
-requirement explicitly: the verifier re-runs the script in a copied workspace,
-so an absolute output path would point outside that copy.
+Leave these three files behind in `/app`, which is also the working directory.
+In `plot.py`, refer to the input file(s) and to `figure.png` and
+`plotted_values.json` by bare filename rather than by absolute path: the
+verifier re-runs the script in a copied workspace, so an absolute path would
+point outside that copy.
 
-TODO: decide whether extra images are allowed and say so. The example allows
-them and grades the one named `figure.png`; requiring "exactly one figure" is
-also fine, but then your verifier has to actually check it -- do not state a
-rule you do not enforce.
+Saving extra images is allowed; the answer is graded from the figure saved as
+`figure.png`. Give any extra image a different stem, so it cannot collide with
+`figure.png`.
 
-1. **`/app/plot.py`** - the plotting script. Self-contained and re-runnable:
-   `python plot.py` from `/app` must reproduce the figure with no arguments and
-   no manual steps. It must read the input file rather than hard-code results,
-   and it must render the same image every time it runs.
-2. **`/app/figure.png`** - the chart, as saved by that script.
-3. **`/app/plotted_values.json`** - the values shown in the chart. Generate this
-   file from the same variables used to draw the figure. Part 3 requires this
-   sidecar because the verifier cannot reliably recover exact values from the
-   PNG. **TODO:** Specify the exact keys and value types, and include a small
-   all-zero example like the one in `harbor/example/instruction.md`.
+1. **`/app/plot.py`** - the plotting script. It must be a self-contained,
+   re-runnable Python program: running `python plot.py` from `/app` must read
+   `sales.csv` and `stores.csv` and write both `figure.png` and `plotted_values.json`, with no
+   arguments and no manual steps. Do not do the work in a heredoc or with
+   `python -c`; the script must survive on disk, and it must compute every value
+   from the input file(s) rather than hard-coding it. It must render the same
+   image every time it runs: if you use randomness (for example for jitter),
+   use a fixed seed.
+2. **`/app/figure.png`** - the chart. It must be the file that `plot.py` saves:
+   re-running the script must reproduce this exact image.
+3. **`/app/plotted_values.json`** - the values shown in the chart, written by
+   `plot.py` from the same variables passed to the plotting functions.
+   It must contain one JSON object with exactly two keys:
+   - `"regions"`: a list of the bar labels (including `"Unassigned"`), in the
+     order they appear on the chart from LEFT to RIGHT;
+   - `"revenue_k"`: a list of JSON numbers, each bar's 2024 total in thousands
+     of dollars, in that same order, unrounded.
 
-TODO: state the prohibitions your verifier relies on, e.g. do not modify the
-input file.
+   For example (truncated to two bars): `{"regions": ["A", "B"], "revenue_k": [0.0, 0.0]}`
 
-Only the libraries already installed are available and there is no network
-access; everything you need is in the image.
+Do not modify `sales.csv` and `stores.csv`.
+
+Only matplotlib, numpy, pandas and Pillow are available, and there is no network
+access; everything you need is already installed.

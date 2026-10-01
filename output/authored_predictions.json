@@ -1,0 +1,109 @@
+{
+  "predictions": [
+    {
+      "run_id": "commute-dot-plot__glm",
+      "errors": []
+    },
+    {
+      "run_id": "commute-dot-plot__ministral",
+      "errors": []
+    },
+    {
+      "run_id": "commute-dot-plot__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "district-case-rates__glm",
+      "errors": []
+    },
+    {
+      "run_id": "district-case-rates__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The agent's formula for case rate is (cases / population_thousands) * 100, but the correct formula should be (cases / population_thousands) * 100,000 to get cases per 100,000 residents. | chart: The chart shows case rates that are 1,000 times too small (e.g., a rate of 370 in the chart corresponds to 370,000 per 100,000 in reality), confirming the unit conversion error."
+        }
+      ]
+    },
+    {
+      "run_id": "district-case-rates__qwen",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "missing data: code: The agent merges on 'district' and drops rows with missing population, so only districts in population.csv are included. The input shows 11 districts in population.csv, and the chart shows 10 districts (Ashford, Bramley, Carlow, Dunmore, Elmstead, Glenside, Harrow Vale, Ivybridge, Juniper, Kestrel, | chart: The chart shows 10 districts, but the input population.csv has 11 districts (Ashford, Bramley, Carlow, Dunmore, Elmstead, Glenside, Harrow Vale, Ivybridge, Juniper, Kestrel,  and one more). The missing district is not shown, so data is missing."
+        }
+      ]
+    },
+    {
+      "run_id": "reaction-strip-plot__glm",
+      "errors": []
+    },
+    {
+      "run_id": "reaction-strip-plot__ministral",
+      "errors": [
+        {
+          "family": "wrong_data",
+          "evidence": "wrong values: code: The code uses `df['rt_ms']` directly without excluding timed-out trials (9999) before computing the mean. The request requires excluding timed-out trials before computing any statistic, but the code excludes them only for plotting the dots, not for the mean calculation. | chart: The mean bars are drawn at the same positions as the data, but the values of the means are not visible. However, the chart shows that the mean bars are present and appear to be calculated from the data that includes the 9999 values, which would be incorrect. The mean for 'High load' is around 800, 1; wrong selection: code: The code correctly selects the 'rt_ms' column and excludes timed-out trials for plotting, but not for the mean calculation. The data used for the mean is not filtered, which is a wrong selection. | chart: The chart shows data points and mean bars for all conditions, but the mean bars are not correctly calculated because the 9999 values are included in the mean calculation."
+        }
+      ]
+    },
+    {
+      "run_id": "reaction-strip-plot__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "regional-revenue__glm",
+      "errors": []
+    },
+    {
+      "run_id": "regional-revenue__ministral",
+      "errors": []
+    },
+    {
+      "run_id": "regional-revenue__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__glm",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'ST454' and 'ST325' overlap; 'ST230' and 'ST011' overlap"
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__ministral",
+      "errors": [
+        {
+          "family": "hard_to_read",
+          "evidence": "overlapping text: 'ST454' and 'ST325' overlap; 'ST230' and 'ST011' overlap"
+        }
+      ]
+    },
+    {
+      "run_id": "station-scatter__qwen",
+      "errors": [
+        {
+          "family": "execution_failure",
+          "evidence": "the run saved no figure.png"
+        }
+      ]
+    }
+  ]
+}

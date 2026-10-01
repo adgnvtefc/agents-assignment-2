@@ -2,7 +2,6 @@ schema_version = "1.4"
 
 # Files pulled OUT of the container, so you can look at what the agent produced
 # next to the verifier's verdict.  Paths are container paths.
-# TODO: list the outputs your task asks for.
 #
 # Collected at the END OF THE AGENT PHASE, before the verifier runs -- so do not
 # list verifier outputs like "/logs/verifier/pytest.log" here.  They do not
@@ -12,14 +11,13 @@ schema_version = "1.4"
 artifacts = [
   "/app/figure.png",
   "/app/plot.py",
+  "/app/plotted_values.json",
 ]
 
 [task]
-# TODO: rename.  Must be "org/name" (letters, digits, . _ - only).
 name = "cmu-11768/commute-dot-plot"
 version = "1.0.0"
-# TODO: one line, what the agent has to do.
-description = "TODO: describe the task."
+description = "Draw a sorted Cleveland dot plot of 40 states' commute times with a median line."
 keywords = ["visualization", "matplotlib"]
 
 # TRAP 1.  Authors are TABLES, not strings.  `authors = ["your name"]` parses as
@@ -27,12 +25,13 @@ keywords = ["visualization", "matplotlib"]
 # "Either datasets or tasks must be provided" -- i.e. "no task found", not
 # "bad task.toml".  Run preflight.py if you ever see that message.
 [[task.authors]]
-name = "TODO: your name"
+name = "Hanmo Zhang"
 
 [metadata]
-# Free-form; harbor does not validate this table.  TODO: fill in.
+# Free-form; harbor does not validate this table.
 task_class = "dense-precise-data"
-chart_family = "TODO"
+chart_family = "dot"
+input_source = "synthetic; scripts/make_tasks.py, seed 7752"
 source = "tasks/commute-dot-plot/task.json"
 
 [verifier]

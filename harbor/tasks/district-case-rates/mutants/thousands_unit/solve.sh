@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reference solution for district-case-rates -- what `-a oracle` runs.
+# MUTANT thousands_unit: Forgets that population is in thousands, so every rate is 1000x too large (the mistake the Qwen agent made in its own run).
 # Writes plot.py to disk and then runs it, because the task requires a re-runnable
 # script to be left behind and the verifier re-executes it.
 set -euo pipefail
@@ -16,7 +16,7 @@ import pandas as pd
 cases = pd.read_csv("cases.csv")
 population = pd.read_csv("population.csv")
 merged = cases[cases["year"] == 2023].merge(population, on="district", how="inner")  # drops unmatched
-residents = merged["population_thousands"] * 1000
+residents = merged["population_thousands"]  # BUG: ignores thousands
 merged["rate"] = merged["cases"] / residents * 100_000
 merged = merged.sort_values("rate", ascending=False).reset_index(drop=True)
 overall = float(merged["cases"].sum() / residents.sum() * 100_000)
